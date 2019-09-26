@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 
 
-class MovieDetails extends Component {
+class Movie extends Component {
     render() {
         return (
             <div>
-                Movie details
+                Movie
             </div>
         )
     }
 }
 
-export default MovieDetails
+export default Movie
