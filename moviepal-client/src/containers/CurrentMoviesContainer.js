@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import Movie from '../components/Movie'
 
-class ToWatchContainer extends Component {
+class CurrentMoviesContainer extends Component {
+    
+    // props: movieSearch, user
+
     render() {
         return (
             <div>
@@ -12,4 +15,4 @@ class ToWatchContainer extends Component {
     }
 }
 
-export default ToWatchContainer
+export default CurrentMoviesContainer 
