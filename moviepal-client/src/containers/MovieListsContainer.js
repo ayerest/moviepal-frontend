@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import List from '../components/List'
+import AllList from './AllList'
 
 class MovieListsContainer extends Component {
     render() {
         return (
             <div>
-                <List />
+                <AllList />
             </div>
         )
     }
