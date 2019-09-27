@@ -15,6 +15,7 @@ function App() {
       </header>
       <Signup />
       <Profile />
+      test
       <Settings />
       <SignUpFormContainer />
       <MovieListsContainer />
