@@ -9,9 +9,9 @@ class Settings extends Component {
         return (
             <div>
                 Settings
-                <ProfileSettings />
+                {/* <ProfileSettings />
                 <MovieSettings />
-                <AlertSettings />
+                <AlertSettings /> */}
             </div>
         )
     }
