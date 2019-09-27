@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 
-class Lists extends Component {
+class Like extends Component {
     render() {
         return (
             <div>
-                <h2>List 1, 2, 3 forms</h2>
-                <Movies />
+                <h2>Likes/unlikes/etc</h2>
             </div>
         )
     }
 }
 
-export default Lists
+export default Like

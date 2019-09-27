@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Map from '../components/profile_components/Map'
-import ToWatchContainer from './ToWatchContainer'
+import CurrentMoviesContainer from './CurrentMoviesContainer'
 
 
 class Profile extends Component {
@@ -12,7 +12,7 @@ class Profile extends Component {
         return (
             <div>
                 Profile
-                <ToWatchContainer />
+                <CurrentMoviesContainer />
                 <Map />
             </div>
         )
