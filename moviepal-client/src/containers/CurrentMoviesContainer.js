@@ -9,7 +9,7 @@ class CurrentMoviesContainer extends Component {
         return (
             <div>
                 Movies to watch
-                <Movie />
+                {/* <Movie /> */}
             </div>
         )
     }

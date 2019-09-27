@@ -11,11 +11,12 @@ class SignUpFormContainer extends Component {
     render() {
         return (
            <div>
-            <SignUp />
-            <SignIn />
+
+            {/* <SignUp />
+            <SignIn /> */}
             {/* button routes to settings */}
-            <button >Already Have an Account?</button>
-                {/* button leads to signin */}
+            {/* <button >Already Have an Account?</button> */}
+                button leads to signin
             </div>
         )
     }

@@ -9,8 +9,8 @@ class List extends Component {
         return (
             <div>
                 <h2>All historical  movies list</h2>
-                <Movie />
-                <Like />
+                {/* <Movie />
+                <Like /> */}
             </div>
         )
     }

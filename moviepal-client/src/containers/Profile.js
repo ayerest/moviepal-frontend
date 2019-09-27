@@ -6,14 +6,16 @@ import CurrentMoviesContainer from './CurrentMoviesContainer'
 class Profile extends Component {
     constructor() {
         super()
+
+
         
     }
     render() {
         return (
             <div>
-                Profile
-                <CurrentMoviesContainer />
-                <Map />
+                {/* <Profile /> */}
+                {/* <CurrentMoviesContainer /> */}
+                {/* <Map /> */}
             </div>
         )
     }

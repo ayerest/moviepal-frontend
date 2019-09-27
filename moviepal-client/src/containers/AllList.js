@@ -5,8 +5,8 @@ class AllList extends Component {
         return (
             <div>
                 <h2>All historical  movies list</h2>
-                <Movies />
-                <MovieDetails />
+                {/* <Movies />
+                <MovieDetails /> */}
             </div>
         )
     }
