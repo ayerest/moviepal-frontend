@@ -5,7 +5,7 @@ class MovieListsContainer extends Component {
     render() {
         return (
             <div>
-                <AllList />
+                {/* <AllList /> */}
             </div>
         )
     }

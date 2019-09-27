@@ -6,7 +6,7 @@ class Movie extends Component {
         return (
             <div>
                 Movie
-                <MovieDetails />
+                {/* <MovieDetails /> */}
             </div>
         )
     }
