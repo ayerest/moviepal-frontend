@@ -8,7 +8,7 @@ import Profile from './containers/Profile'
 // import SignUpFormContainer from './containers/SignUpFormContainer'
 
 
-function App() {
+function App () {
 
   // function testfunction () {
   //   fetch("http://localhost3000/genres", {
