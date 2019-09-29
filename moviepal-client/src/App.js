@@ -4,6 +4,8 @@ import './App.css';
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 // import Profile from './containers/Profile'
+// import Signup from './components/SignUp'
+import Profile from './containers/Profile'
 // import Settings from './containers/Settings'
 // import MovieListsContainer from './containers/MovieListsContainer'
 // import SignUpFormContainer from './containers/SignUpFormContainer'
@@ -12,35 +14,34 @@ import SignUp from './components/SignUp'
 
 function App() {
 
-//   async function testfunction() {
-//     await fetch("http://localhost3000/genres", {
-//     method: 'POST',
-//     headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       name: "test name", 
-//     })
-//   })
-//   .then(response => response.json())
-//   .then(data => console.log(data))
-// }
+  // function testfunction () {
+  //   fetch("http://localhost3000/genres", {
+  //     method: 'POST',
+  //     headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       name: "test name" 
+  //     })
+  //   })
+  // }
+    
   return (
     <div className="">
       <header className="">
       </header>
       <SignUp />
       {/* <Profile /> */}
+      {/* <Signup /> */}
+      <Profile />
+      {/* <button onClick = {testfunction} >add test data </button> */}
       {/* <Settings />
       <SignUpFormContainer />
       <MovieListsContainer /> */}
       {/* <button onClick={testfunction}>Test out fetch</button> */}
     </div>
   );
-
-
-
-}
+    }
 
 export default App;
