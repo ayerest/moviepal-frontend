@@ -7,16 +7,12 @@ class SignUpFormContainer extends Component {
         super()
         
     }
-    //will need to track if they click already have account in state to dynamically display one component vs the other
+    
     render() {
         return (
            <div>
-
-            {/* <SignUp />
-            <SignIn /> */}
-            {/* button routes to settings */}
-            {/* <button >Already Have an Account?</button> */}
-                button leads to signin
+             {/* <SignIn /> */}
+             <SignUp />
             </div>
         )
     }
