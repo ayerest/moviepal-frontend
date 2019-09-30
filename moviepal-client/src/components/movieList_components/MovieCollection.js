@@ -1,5 +1,5 @@
 import React from "react";
-import Movie from "../movieList_components/Movie";
+import Movie from "../movieList_components/MovieListItem";
 
 class MovieCollection extends React.Component {
 

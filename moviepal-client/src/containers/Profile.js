@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MapContainer from '../components/profile_components/MapContainer'
+import MapContainer from '../components/MapContainer'
 import CurrentMoviesContainer from './CurrentMoviesContainer'
 
 
@@ -8,7 +8,8 @@ class Profile extends Component {
         super(props)
         this.state = {
             api: "",
-            center: null
+            center: null,
+            theaters: null
         }
         // fetch("http://localhost:3000/maps")
         // .then(response => response.json())
@@ -19,12 +20,14 @@ class Profile extends Component {
         //         api: json.api_key
         //     })
         // })
-
+        
             let city = this.props.location
+            console.log("is this the city", city)
             fetch('http://localhost:3000/maps', {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application.json"
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                 },
                 body: JSON.stringify({
                     city: city
@@ -33,18 +36,42 @@ class Profile extends Component {
                 .then(centerPointHash => {
                     this.setState(prevState => {
                         return { center: centerPointHash }
-                    }, () => console.log("testing", this.state.center))
+                    }, () => this.getTheaters(centerPointHash))
                 }).catch(error => {
                     console.log(error)
                 })
-    }   
-    
+            }
+
+    getTheaters = (centerPointHash) => {
+        // debugger
+        fetch('http://localhost:3000/markers', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+                },
+            body: JSON.stringify({
+                latLong: centerPointHash
+            })
+            }).then(response => response.json())
+        .then(data => {
+            this.setState(prevState => {
+                return { theaters: data }
+            }, () => console.log("testing", this.state.theaters))
+        }).catch(error => {
+            console.log(error)
+        })
+        }
+
+
+
+        
     render() {
         return (
             <div>
                 profile
                 <CurrentMoviesContainer />
-                <MapContainer center={this.state.center}/>
+                <MapContainer theaters={this.state.theaters} center={this.state.center}/>
             </div>
         )
     }

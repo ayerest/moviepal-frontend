@@ -8,6 +8,7 @@ import Profile from './containers/Profile'
 import Settings from './containers/Settings'
 // import MovieListsContainer from './containers/MovieListsContainer'
 import SignUpFormContainer from './containers/SignUpFormContainer'
+import CurrentMoviesContainer from './containers/CurrentMoviesContainer';
 
 
 function App () {
@@ -35,6 +36,7 @@ function App () {
       {/* <SignIn /> */}
 
       <SearchMoviesContainer />
+      <Profile location={"Seattle"}/>
       {/* <button onClick = {testfunction} >add test data </button> */}
        {/* <Settings /> */}
 
