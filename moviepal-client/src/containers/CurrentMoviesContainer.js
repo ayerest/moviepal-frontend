@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Movie from '../components/movieList_components/Movie'
+import MovieListItem from '../components/movieList_components/MovieListItem'
 
 class CurrentMoviesContainer extends Component {
     
@@ -38,7 +38,7 @@ class CurrentMoviesContainer extends Component {
         //need to figure out where this should live though
 
             return this.state.currentMovies.map((movie, index) => {
-                return <Movie movie={movie} key={index} />
+                return <MovieListItem movie={movie} key={index} />
             })
         
     }

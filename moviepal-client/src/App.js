@@ -34,9 +34,9 @@ function App () {
       {/* <Profile /> */}
       {/* <SignIn /> */}
 
-      <SearchMoviesContainer />
+      {/* <SearchMoviesContainer /> */}
       {/* <button onClick = {testfunction} >add test data </button> */}
-       {/* <Settings /> */}
+       <Settings />
 
       {/* <SignUpFormContainer /> */}
 

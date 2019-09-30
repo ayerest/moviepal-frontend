@@ -5,13 +5,26 @@ import AlertSettings from '../components/settings_components/AlertSettings'
 
 
 class Settings extends Component {
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+            genre: []
+
+        }
+    }
+    
     render() {
         return (
             <div>
                 Settings
-                {/* <ProfileSettings />
+                
+
                 <MovieSettings />
-                <AlertSettings /> */}
+
+                {/* <AlertSettings />
+
+                <ProfileSettings /> */}
             </div>
         )
     }

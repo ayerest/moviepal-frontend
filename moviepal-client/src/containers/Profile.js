@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MapContainer from '../components/profile_components/MapContainer'
+import MapContainer from '../components/MapContainer'
 import CurrentMoviesContainer from './CurrentMoviesContainer'
 
 
