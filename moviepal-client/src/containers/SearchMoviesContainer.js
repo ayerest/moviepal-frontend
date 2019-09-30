@@ -39,20 +39,12 @@ class SearchMoviesContainer extends Component {
   
       }
 
-
-      //may be able to delete?
-      handleClick = (movie) => {
-          this.setState({
-            searchMovies: [...this.state.searchMovies, movie]
-          })
-        }  
-
     render() {
         return (
                 <div>
                     <h2>{this.state.movieData}</h2>
 
-                    <List handleChange= {this.handleChange}  search = {this.state.search} handleClick={this.handleClick} allMovies = {this.state.allMovies} />
+                    <List handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} />
                 </div>
         )
     }

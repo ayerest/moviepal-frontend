@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 
 const MovieDetails = (props) => {
-    let {movie, onClick, displayOneMovie } = props
+    let {movie, displayOneMovie} = props
 
 
         return (

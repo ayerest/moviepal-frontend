@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import MovieDetails from './MovieDetails'
 
 // put this in a list form
 const Movie = (props) => {
-    const {movie, onClick} = props
+    const {movie, handleClick} = props
 
     return(
-        <div>
-            <h2>{movie.title}</h2>
+        <div className = "ui card"
+        key = {movie.id}
+        onClick = {()=> handleClick(movie)}>
+            {movie.title}
         </div>
     )
 
