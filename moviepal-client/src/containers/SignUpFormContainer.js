@@ -1,18 +1,16 @@
 import React, {Component} from 'react'
-import SignIn from '../components/SignIn'
-import SignUp from '../components/SignUp'
+import SignIn from '../components/signIn_components/SignIn'
 
 class SignUpFormContainer extends Component {
-    constructor() {
-        super()
-        
-    }
+
+
     
     render() {
+        
         return (
            <div>
-             {/* <SignIn /> */}
-             <SignUp />
+             <SignIn />
+             {/* <SignUp /> */}
             </div>
         )
     }
