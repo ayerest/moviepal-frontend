@@ -9,18 +9,8 @@ import Settings from './containers/Settings'
 // import MovieListsContainer from './containers/MovieListsContainer'
 import SignUpFormContainer from './containers/SignUpFormContainer'
 
-class App extends React.Component {
 
-  constructor () {
-    super()
-    this.state = {
-      auth: {
-        user: {}
-      }
-    }
-  }
-
-  
+function App () {
 
   // function testfunction () {
   //   fetch("http://localhost3000/genres", {
@@ -35,7 +25,7 @@ class App extends React.Component {
   //   })
   // }
 
-    render() {
+
         return (
     <div className="">
       <header className="">
@@ -54,6 +44,5 @@ class App extends React.Component {
       {/* <button onClick={testfunction}>Test out fetch</button> */}
     </div>
     )}
-  }
 
 export default App;
