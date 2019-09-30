@@ -15,19 +15,38 @@ class MapContainer extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
+            infoWindowContent: {}
         }
         // should have the user city passed down as a prop
     }
 
-    handleMarkerClick = (e, marker) => {
-        console.log("event", e)
-        console.log(marker)
-        // debugger
-        this.setState({
-            selectedPlace: "test",
-            activeMarker: marker,
-            showingInfoWindow: true
-        },()=> console.log("marker click", this.state));
+    onMapClick = (props) => {
+        if (this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            })
+        }
+    }
+
+    onMarkerClick = (props, marker, e) => {
+        fetch('http://localhost:3000/theaters', {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json",
+                'Accept': "application/json"
+            }, body: JSON.stringify({
+                place_id: props.id
+            })
+        }).then(response => response.json())
+        .then(data => {
+            this.setState({
+                selectedPlace: props,
+                activeMarker: marker,
+                showingInfoWindow: true,
+                infoWindowContent: data
+            },()=> console.log("marker clicked", this.state));
+        })
     }
     displayMarkers = () => {
         if (!!this.props.theaters) {
@@ -35,8 +54,8 @@ class MapContainer extends Component {
                 let lat = theater.latlong["lat"]
                 let lng = theater.latlong["lng"]
                 // console.log(lat, lng)
-                return <Marker icon={{ url: theater.icon, scaledSize: { width: 40, height: 40 }}} name={theater.name} key={index} id={index} position={{lat: lat, lng: lng }}
-                onClick={this.handleMarkerClick}
+                return <Marker icon={{ url: theater.icon, scaledSize: { width: 40, height: 40 }}} name={theater.name} key={index} id={theater.id} position={{lat: lat, lng: lng }}
+                onClick={this.onMarkerClick}
              />
             })
         }
@@ -51,12 +70,14 @@ class MapContainer extends Component {
                         <Map google={this.props.google}
                         zoom={14}
                         style={mapStyles}
-                        initialCenter={this.props.center.latlong}>
+                        initialCenter={this.props.center.latlong}
+                        onClick={this.onMapClick}>
                      {this.displayMarkers()}
                         <InfoWindow
                             marker = { this.state.activeMarker }
                             visible = { this.state.showingInfoWindow }
-                        ></InfoWindow>
+                            ><a href={this.state.infoWindowContent.url}>{this.state.infoWindowContent.name}</a>
+                            <p>{this.state.infoWindowContent.addy}</p></InfoWindow>
                      </Map>
                     </div>) : null
                 }

@@ -38,7 +38,7 @@ function App () {
       <SearchMoviesContainer />
       <Profile location={"Seattle"}/>
       {/* <button onClick = {testfunction} >add test data </button> */}
-       <Settings />
+       {/* <Settings /> */}
 
       {/* <SignUpFormContainer /> */}
 
