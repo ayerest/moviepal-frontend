@@ -40,11 +40,11 @@ class App extends React.Component {
     <div className="">
       <header className="">
       </header>
-      <SignUp />
+      {/* <SignUp /> */}
       {/* <Profile /> */}
       {/* <SignIn /> */}
 
-      {/* <SearchMoviesContainer /> */}
+      <SearchMoviesContainer />
       {/* <button onClick = {testfunction} >add test data </button> */}
        {/* <Settings /> */}
 

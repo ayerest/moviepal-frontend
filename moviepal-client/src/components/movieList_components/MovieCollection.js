@@ -8,10 +8,15 @@ class MovieCollection extends React.Component {
     console.log(this.props.allMovies)
   	return (
   	  <div className="ui four column grid">
-    		{/* <div className="row">
+    		<div className="row">
+				{/* {(allMovies.length>0)?
+				"MOVIES EXIST"
+				:
+					"NO MOVIES"
+				} */}
     		  {allMovies.map(movie => <Movie handleClick = {this.props.handleClick} key={movie.id} movie={movie}/> )}
     		  Collection of all movies
-    		</div> */}
+    		</div>
   	  </div>
   	);
   }

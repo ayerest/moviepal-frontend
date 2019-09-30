@@ -6,15 +6,16 @@ class SearchMoviesContainer extends Component {
 
     constructor () {
         super()
-        fetch("http://localhost:3000/movies")
-        .then(response => response.json())
-        .then(movieData => this.renderMovies(movieData))
-        // .then(movieData => console.log(movieData[0]))
-
         this.state = {
             allMovies: [],
             search: ""
         }
+
+        fetch("http://localhost:3000/movies")
+        .then(response => response.json())
+        .then(movieData => this.renderMovies(movieData))
+        .then(movieData => console.log(movieData))
+
     }
 
     
@@ -23,7 +24,8 @@ class SearchMoviesContainer extends Component {
         
         this.setState({
             allMovies: movieData
-        })
+        }, ()=>  console.log("after render", this.state.allMovies)
+        )
         // console.log(movieData[0])
         // console.log(movieData)
 

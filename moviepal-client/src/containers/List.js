@@ -8,8 +8,7 @@ class List extends React.Component {
     state = {
         displayAllMovies: true,
         movie: "",
-        allMovies: this.props.allMovies
-        
+        allMovies: this.props.allMovies  
     }
 
     displayOneMovie = (movie) => {
@@ -25,7 +24,7 @@ class List extends React.Component {
             <div>
                 
                 <input onChange = {this.props.handleChange} placeholder = "Search Your Movies" />
-                <MovieCollection allMovies = {this.allMovies} handleClick = {this.props.handleClick} />
+                <MovieCollection allMovies = {this.props.allMovies} handleClick = {this.props.handleClick} />
 
                 <MovieDetails displayOneMovie = {this.displayOneMovie} onClick = {this.props.onClick} movie= {this.state.movie} 
                 />
