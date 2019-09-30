@@ -24,11 +24,11 @@ class MapContainer extends Component {
         // debugger
         return (
             <div>
-                <Map google={this.props.google}
+                {/* <Map google={this.props.google}
                 zoom={9}
                 style={mapStyles}
                 initialCenter={this.props.center.latlong}
-                />
+                /> */}
                 {/* <GoogleMapReact
                     bootstrapURLKeys={{key: this.props.api}}
                     defaultCenter={this.state.center.latlong}
@@ -51,5 +51,5 @@ class MapContainer extends Component {
 
 
 export default GoogleApiWrapper(({
-    apiKey: "Need to figure out how to get api key here"
+    apiKey: "sdfkjhdafsfuntimes"
 }))(MapContainer)
