@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchMoviesContainer from './containers/SearchMoviesContainer'
 // import Profile from './containers/Profile'
 import SignUp from './components/signIn_components/SignUp'
+import SignIn from './components/signIn_components/SignIn'
 import Profile from './containers/Profile'
 import Settings from './containers/Settings'
 // import MovieListsContainer from './containers/MovieListsContainer'
@@ -11,40 +12,59 @@ import SignUpFormContainer from './containers/SignUpFormContainer'
 import CurrentMoviesContainer from './containers/CurrentMoviesContainer';
 
 
-function App () {
+export class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      logged_in: false,
+      user: null
+    }
+  }
 
-  // function testfunction () {
-  //   fetch("http://localhost3000/genres", {
-  //     method: 'POST',
-  //     headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       name: "test name" 
-  //     })
-  //   })
-  // }
+  getLoggedIn = (data) => {
+    fetch('http://localhost:3000/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
+    }).then(response => response.json())
+    .then(data => {
+      debugger
+      this.setState({
+        logged_in: true,
+        user: data.user
+      }, () => console.log(this.state))
+    })
+  }
 
+    render() {
+      return (
+        <div className="">
+          <header className="">
+          </header>
+          {!!this.state.logged_in ? 
+            ( <div>
+                <SearchMoviesContainer />
+                <Profile user={this.state.user} location={"Seattle"}/>
+              </div>
+              ) :  
+              <SignIn onSignIn={this.getLoggedIn}/>
+              }
+      
+          {/* <SignIn onSignIn={this.getLoggedIn}/> */}
 
-        return (
-    <div className="">
-      <header className="">
-      </header>
-      {/* <SignUp /> */}
-      {/* <Profile /> */}
-      {/* <SignIn /> */}
+          {/* {/* (<SignUp onSignUp={this.getLoggedIn}/>) } */ }
 
-      <SearchMoviesContainer />
-      <Profile location={"Seattle"}/>
-      {/* <button onClick = {testfunction} >add test data </button> */}
-       {/* <Settings /> */}
+          {/* <button onClick = {testfunction} >add test data </button> */}
+          {/* <Settings /> */}
 
-      {/* <SignUpFormContainer /> */}
+          {/* <SignUpFormContainer /> */}
 
-      {/* <MovieListsContainer /> */}
-      {/* <button onClick={testfunction}>Test out fetch</button> */}
-    </div>
-    )}
+          {/* <MovieListsContainer /> */}
+          {/* <button onClick={testfunction}>Test out fetch</button> */}
+        </div>
+      )
+    }
+  }
 
 export default App;

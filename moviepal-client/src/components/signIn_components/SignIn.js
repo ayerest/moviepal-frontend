@@ -24,13 +24,17 @@ constructor () {
     }
     
 }
-this.onSubmit = this.onSubmit.bind(this)
+this.handleSubmit = this.handleSubmit.bind(this)
 }
 
 
 handleChange = (e) => {
     // console.log(e.target.value)
-    const newInput = { ...this.state.fields, [e.target.name]: e.target.value}
+    // debugger
+    let newVal = e.target.value
+    let fieldName = e.target.name
+    console.log(newVal, fieldName)
+    const newInput = { ...this.state.fields, [fieldName]: newVal}
     this.setState({
         fields: newInput
     })
@@ -38,20 +42,27 @@ handleChange = (e) => {
 
 handleSubmit = (e) => {
     e.preventDefault()
-    applicationCache.auth.login(this.state.fields)
-    .then (response => {
-        if(!response.error) {
-            const updatedState = {
-                ...this.state.auth, user: response};
-                this.props.handleLogin(response);
-                this.props.history.push('/');
-            }
-            else {
-                this.setState({error: true
-                })
-            }
-            }
-    )}
+
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        "username": this.state.fields.username,
+        "password": this.state.fields.password 
+      })
+    })
+    .then(response => response.json())
+    .then(json => {
+      //do something to update App state to deal with the logged_in status
+      // console.log(json.jwt)
+      console.log(json)
+      localStorage.setItem("token", json.jwt)
+    })
+
+  }
 
     openModal() {
         this.setState({
@@ -75,11 +86,11 @@ handleSubmit = (e) => {
                  <form onSubmit = {this.handleSubmit}>
                     <div classname = "ui field">
                         <label>Username</label>
-                <input type="text" required placeholder="Username" value= {fields.username} onChange = {this.handleChange}></input>
+                <input name="username" type="text" required placeholder="Username" value= {fields.username} onChange = {this.handleChange}></input>
                 </div>
                 <div classname = "ui field">
                 <label>Password</label>
-                <input type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
+                <input name="password" type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
                 </div>
               <button type = "submit">Sign In</button>
               {/* <div>
@@ -106,7 +117,7 @@ handleSubmit = (e) => {
       )
   
     }
+  }
 
-}
 
 export default SignIn
