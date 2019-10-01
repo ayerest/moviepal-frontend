@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Movie from '../components/Movie'
 import MovieListItem from '../components/movieList_components/MovieListItem'
 
-
 class CurrentMoviesContainer extends Component {
     
     // props: movieSearch, user
@@ -40,7 +39,7 @@ class CurrentMoviesContainer extends Component {
         //need to figure out where this should live though
 
             return this.state.currentMovies.map((movie, index) => {
-                return <MovieListItem movie={movie} key={index} />
+                return <Movie movie={movie} key={index} />
             })
         
     }

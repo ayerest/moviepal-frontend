@@ -38,11 +38,17 @@ class SignUp extends Component {
                 JSON.stringify({
                     name: e.target.name.value,
                     username: e.target.username.value,
-                    password: e.target.password.value,
+                    password_digest: e.target.password.value,
                     city: e.target.city.value,
 
                 })
             
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                // debugger
+                this.props.onSignUp(data)
             })
             // .then(Promise.resolve((response => response.json())))
             // // .then(data => console.log(data))

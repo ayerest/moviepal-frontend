@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchMoviesContainer from './containers/SearchMoviesContainer'
 // import Profile from './containers/Profile'
 import SignUp from './components/signIn_components/SignUp'
+import SignIn from './components/signIn_components/SignIn'
 import Profile from './containers/Profile'
 import Settings from './containers/Settings'
 // import MovieListsContainer from './containers/MovieListsContainer'
@@ -11,64 +12,59 @@ import SignUpFormContainer from './containers/SignUpFormContainer'
 import CurrentMoviesContainer from './containers/CurrentMoviesContainer';
 
 
-function App () {
-  // constructor() {
-  //   super();
+export class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      logged_in: false,
+      user: null
+    }
+  }
 
-  //   // this.state = {
-  //   //   auth: {
-  //   //     user: {}
-  //   //   }
-  //   // };
-  // }
+  getLoggedIn = (data) => {
+    fetch('http://localhost:3000/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
+    }).then(response => response.json())
+    .then(data => {
+      debugger
+      this.setState({
+        logged_in: true,
+        user: data.user
+      }, () => console.log(this.state))
+    })
+  }
 
-  // componentDidMount() {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     console.log("there is no token");
-  //   } else {
-  //     // make a request to the backend and find our user
-  //     api.auth.getCurrentUser().then(user => {
-  //       const updatedState = { ...this.state.auth, user: user };
-  //       this.setState({ auth: updatedState });
-  //     });
-  //   }
-  // }
+    render() {
+      return (
+        <div className="">
+          <header className="">
+          </header>
+          {!!this.state.logged_in ? 
+            ( <div>
+                <SearchMoviesContainer />
+                <Profile user={this.state.user} location={"Seattle"}/>
+              </div>
+              ) :  
+              <SignIn onSignIn={this.getLoggedIn}/>
+              }
+      
+          {/* <SignIn onSignIn={this.getLoggedIn}/> */}
 
-  // login = data => {
-  //   const updatedState = { ...this.state.auth, user: data };
-  //   localStorage.setItem("token", data.jwt);
-  //   this.setState({ auth: updatedState });
-  // };
+          {/* {/* (<SignUp onSignUp={this.getLoggedIn}/>) } */ }
 
-  // logout = () => {
-  //   localStorage.removeItem("token");
-  //   this.setState({ auth: { user: {} } });
-  // };
+          {/* <button onClick = {testfunction} >add test data </button> */}
+          {/* <Settings /> */}
 
- 
-        return (
-    <div className="">
-      <header className="">
-      </header>
-      {/* <SignUp /> */}
-      {/* <Profile /> */}
-      {/* <SignIn /> */}
+          {/* <SignUpFormContainer /> */}
 
-      {/* <SearchMoviesContainer /> */}
-      {/* <SearchMoviesContainer /> */}
-      {/* <Profile location={"Seattle"}/> */}
-      {/* <button onClick = {testfunction} >add test data </button> */}
-       <Settings />
-
-      {/* <SignUpFormContainer /> */}
-
-      {/* <MovieListsContainer /> */}
-      {/* <button onClick={testfunction}>Test out fetch</button> */}
-    </div>
-    )
-  
-}
-        
+          {/* <MovieListsContainer /> */}
+          {/* <button onClick={testfunction}>Test out fetch</button> */}
+        </div>
+      )
+    }
+  }
 
 export default App;
