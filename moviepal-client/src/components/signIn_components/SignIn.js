@@ -79,7 +79,7 @@ handleSubmit = (e) => {
                 </div>
                 <div classname = "ui field">
                 <label>Password</label>
-                <input type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
+                <input type="password" required placeholder="Password"  value= {fields.password} onChange = {this.handleChange}></input>
                 </div>
               <button type = "submit">Sign In</button>
               {/* <div>
