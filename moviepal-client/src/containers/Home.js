@@ -18,7 +18,7 @@ class Home extends React.Component {
                 <Profile user={this.props.user}/>
               </div>
               ) :  
-              <SignIn onSignIn={this.props.getLoggedIn}/>
+                <SignIn onSignIn={this.props.getLoggedIn}/>
               }
      
         </div>

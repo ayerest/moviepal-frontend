@@ -23,7 +23,6 @@ class SearchMoviesContainer extends Component {
             allMovies: movieData
         }, ()=>  console.log("after render", this.state.allMovies)
         )
-        // console.log(movieData)
 
         
     }
@@ -40,7 +39,7 @@ class SearchMoviesContainer extends Component {
                 <div>
                     <h2>{this.state.movieData}</h2>
 
-                    <List handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} />
+                    {/* <List handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} /> */}
                 </div>
         )
     }

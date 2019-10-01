@@ -4,7 +4,6 @@ class Movie extends Component {
     constructor(props) {
         super(props)
         console.log("made it down to movie")
-        // debugger
     }
     render() {
         let { genres, title, summary, rating, movie_poster, runtime, stars, trailer } = this.props.movie

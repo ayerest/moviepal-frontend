@@ -28,7 +28,7 @@ class NavBar extends React.Component {
                 </NavLink>
 
                 <NavLink
-                to = "/"
+                to = "/home"
 
                 style= {link}
                 activeStyle = {{

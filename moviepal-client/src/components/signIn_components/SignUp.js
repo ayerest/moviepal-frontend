@@ -46,23 +46,16 @@ class SignUp extends Component {
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                console.log("after sign up form", data)
                 // debugger
                 this.props.onSignUp(data)
             })
-            // .then(Promise.resolve((response => response.json())))
-            // // .then(data => console.log(data))
-            // .catch(err => console.log(err))
 
     }
     
         handleChange = (e) => {
-            console.log(e.target.value)
-            console.log(this.state)
             const newInput = { ...this.state.fields, [e.target.name]: e.target.value}
-            this.setState({fields: newInput
-            
-            })
+            this.setState({fields: newInput})
         }
 
         openModal = (e) => {

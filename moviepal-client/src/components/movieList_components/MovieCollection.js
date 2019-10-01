@@ -6,7 +6,6 @@ class MovieCollection extends React.Component {
 
   render(){
     let allMovies = this.props.allMovies
-	// console.log(this.props.allMovies)
 	
   	return (
   	  <div className="ui one column grid">
