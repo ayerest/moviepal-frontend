@@ -1,18 +1,12 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import SearchMoviesContainer from './containers/SearchMoviesContainer'
-// import Profile from './containers/Profile'
-import SignUp from './components/signIn_components/SignUp'
-import SignIn from './components/signIn_components/SignIn'
-import Profile from './containers/Profile'
 import Settings from './containers/Settings'
-// import MovieListsContainer from './containers/MovieListsContainer'
-import SignUpFormContainer from './containers/SignUpFormContainer'
-import CurrentMoviesContainer from './containers/CurrentMoviesContainer';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import NavBar from './containers/NavBar.js'
+import Home from './containers/Home'
 
-
-export class App extends Component {
+class App extends Component {
   constructor() {
     super()
     this.state = {
@@ -39,30 +33,20 @@ export class App extends Component {
 
     render() {
       return (
-        <div className="">
-          <header className="">
-          </header>
-          {!!this.state.logged_in ? 
-            ( <div>
-                <SearchMoviesContainer />
-                <Profile user={this.state.user} location={"Seattle"}/>
-              </div>
-              ) :  
-              <SignIn onSignIn={this.getLoggedIn}/>
-              }
-      
-          {/* <SignIn onSignIn={this.getLoggedIn}/> */}
 
-          {/* {/* (<SignUp onSignUp={this.getLoggedIn}/>) } */ }
+        <Router>
+        <NavBar loggedIn={this.state.loggedIn}/>
+        <div>
+      <Route path = '/' render = { props => <Home {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } getLoggedIn= {this.getLoggedIn}/>
 
-          {/* <button onClick = {testfunction} >add test data </button> */}
-          {/* <Settings /> */}
 
-          {/* <SignUpFormContainer /> */}
+        <Route exact path = '/settings' render = { props => <Settings {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
 
-          {/* <MovieListsContainer /> */}
-          {/* <button onClick={testfunction}>Test out fetch</button> */}
+        <Route exact path = '/mymovies' render = { props => 
+        
+        <SearchMoviesContainer {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
         </div>
+    </Router>
       )
     }
   }

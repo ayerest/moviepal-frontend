@@ -60,6 +60,8 @@ handleSubmit = (e) => {
       // console.log(json.jwt)
       console.log(json)
       localStorage.setItem("token", json.jwt)
+      // debugger
+      this.props.onSignIn(json)
     })
 
   }
@@ -90,11 +92,7 @@ handleSubmit = (e) => {
                 </div>
                 <div classname = "ui field">
                 <label>Password</label>
-<<<<<<< HEAD
-                <input type="password" required placeholder="Password"  value= {fields.password} onChange = {this.handleChange}></input>
-=======
                 <input name="password" type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
->>>>>>> 647d94ad6cf36e757a68371c5a95c0652298c6eb
                 </div>
               <button type = "submit">Sign In</button>
               {/* <div>

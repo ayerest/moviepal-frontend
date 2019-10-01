@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+
 // document.addEventListener("DOMContentLoaded", scriptSrcGoogleMaps())
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render((
+    <App />), document.getElementById('root')
+);
 
 // (async function getSrc() {
 //     fetch("http://localhost:3000/maps")
