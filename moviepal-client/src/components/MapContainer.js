@@ -17,7 +17,6 @@ class MapContainer extends Component {
             selectedPlace: {},
             infoWindowContent: {}
         }
-        // should have the user city passed down as a prop
     }
 
     onMapClick = (props) => {
@@ -53,7 +52,6 @@ class MapContainer extends Component {
             return this.props.theaters.map((theater, index) => {
                 let lat = theater.latlong["lat"]
                 let lng = theater.latlong["lng"]
-                // console.log(lat, lng)
                 return <Marker icon={{ url: theater.icon, scaledSize: { width: 40, height: 40 }}} name={theater.name} key={index} id={theater.id} position={{lat: lat, lng: lng }}
                 onClick={this.onMarkerClick}
              />
@@ -62,7 +60,6 @@ class MapContainer extends Component {
     }
     
     render() {
-        // debugger
         return (
             <div>
                 {!!this.props.center ? 
@@ -72,12 +69,13 @@ class MapContainer extends Component {
                         style={mapStyles}
                         initialCenter={this.props.center.latlong}
                         onClick={this.onMapClick}>
-                     {this.displayMarkers()}
+                        {this.displayMarkers()}
                         <InfoWindow
                             marker = { this.state.activeMarker }
                             visible = { this.state.showingInfoWindow }
                             ><a href={this.state.infoWindowContent.url}>{this.state.infoWindowContent.name}</a>
-                            <p>{this.state.infoWindowContent.addy}</p></InfoWindow>
+                            <p>{this.state.infoWindowContent.addy}</p>
+                        </InfoWindow>
                      </Map>
                     </div>) : null
                 }
@@ -99,7 +97,6 @@ class MapContainer extends Component {
 //     return jsoned.api_key
 // }
 // let RESOLVED = PROMISED()
-// console.log(RESOLVED)
 
 
 export default GoogleApiWrapper({

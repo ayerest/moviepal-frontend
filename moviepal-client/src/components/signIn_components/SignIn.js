@@ -29,11 +29,8 @@ this.handleSubmit = this.handleSubmit.bind(this)
 
 
 handleChange = (e) => {
-    // console.log(e.target.value)
-    // debugger
     let newVal = e.target.value
     let fieldName = e.target.name
-    console.log(newVal, fieldName)
     const newInput = { ...this.state.fields, [fieldName]: newVal}
     this.setState({
         fields: newInput
@@ -59,11 +56,11 @@ handleSubmit = (e) => {
     .then(data => console.log(data))
     .then(json => {
       //do something to update App state to deal with the logged_in status
-      // console.log(json.jwt)
-      console.log(json)
-      localStorage.setItem("token", json.jwt)
-      // debugger
-      this.props.onSignIn(json)
+      if (json.jwt) {
+        localStorage.setItem("token", json.jwt)
+        // debugger
+        this.props.onSignIn(json)
+      }
     })
 
   }
@@ -86,17 +83,18 @@ handleSubmit = (e) => {
       return (
           <div>
               {this.state.error ? <h1>Try again...</h1> : null}
-              <div classname= "ui field">
+              <div className= "ui field">
                  <form onSubmit = {this.handleSubmit}>
-                    <div classname = "ui field">
+                    <div className = "ui field">
                         <label>Username</label>
-                <input name="username" type="text" required placeholder="Username" value= {fields.username} onChange = {this.handleChange}></input>
-                </div>
-                <div classname = "ui field">
-                <label>Password</label>
-                <input name="password" type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
-                </div>
-              <button type = "submit">Sign In</button>
+                      <input name="username" type="text" required placeholder="Username" value= {fields.username} onChange = {this.handleChange}></input>
+                    </div>
+                    <div className = "ui field">
+                      <label>Password</label>
+                      <input name="password" type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
+                    </div>
+                    <button type = "submit">Sign In</button>
+                  </form>
               {/* <div>
                   <button onClick = {e => {
                   this.showModal()}}
@@ -104,19 +102,16 @@ handleSubmit = (e) => {
                   </button>
                   <SignUp showModal= {this.state.showModal} onClose = {this.showModal} />
               </div> */}
-              <div>
-              <button onClick={() => this.openModal()}>Open Modal</button>
+                <div>
+                  <button onClick={() => this.openModal()}>Open Modal</button>
  
-                <SignUp
-                visible={this.state.showModal}
-                onCloseModal={this.closeModal.bind(this)}
-                error={this.state.error} />
-            </div>
-
-              
-          </form>
+                  <SignUp
+                  visible={this.state.showModal}
+                  onCloseModal={this.closeModal.bind(this)}
+                  error={this.state.error} />
+                </div>
           
-          </div>
+            </div>
           </div>
       )
   

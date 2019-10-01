@@ -23,11 +23,10 @@ class App extends Component {
       }
     }).then(response => response.json())
     .then(data => {
-      // debugger
-      this.setState({
-        logged_in: true,
-        user: data.user
-      }, () => console.log(this.state))
+      this.setState(prevState => {
+        return {logged_in: true,
+        user: data.user}
+      })
     })
   }
 
@@ -35,18 +34,13 @@ class App extends Component {
       return (
 
         <Router>
-        <NavBar loggedIn={this.state.loggedIn}/>
-        <div>
-      <Route path = '/' render = { props => <Home {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } getLoggedIn= {this.getLoggedIn}/>
-
-
-        <Route exact path = '/settings' render = { props => <Settings {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
-
-        <Route exact path = '/mymovies' render = { props => 
-        
-        <SearchMoviesContainer {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
-        </div>
-    </Router>
+          <NavBar user={this.state.user} loggedIn={this.state.logged_in}/>
+          <div>
+            <Route path = '/home' render = { props => <Home {...props} userStatus =   {this.state.logged_in} user = {this.state.user} getLoggedIn= {this.getLoggedIn} /> } />
+            <Route exact path = '/settings' render = { props => <Settings {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
+            <Route exact path = '/mymovies' render = { props => <SearchMoviesContainer {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
+          </div>
+        </Router>
       )
     }
   }

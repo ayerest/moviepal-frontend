@@ -7,7 +7,6 @@ class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            api: "",
             center: null,
             theaters: null
         }
@@ -21,8 +20,7 @@ class Profile extends Component {
         //     })
         // })
         
-            let city = this.props.location
-            console.log("is this the city", city)
+            let city = this.props.user.city
             fetch('http://localhost:3000/maps', {
                 method: "POST",
                 headers: {
@@ -38,12 +36,11 @@ class Profile extends Component {
                         return { center: centerPointHash }
                     }, () => this.getTheaters(centerPointHash))
                 }).catch(error => {
-                    console.log(error)
+                    console.log("error after generating map based on city", error)
                 })
             }
 
     getTheaters = (centerPointHash) => {
-        // debugger
         fetch('http://localhost:3000/markers', {
             method: "POST",
             headers: {
@@ -57,9 +54,9 @@ class Profile extends Component {
         .then(data => {
             this.setState(prevState => {
                 return { theaters: data }
-            }, () => console.log("testing", this.state.theaters))
+            }, () => console.log("after getting theaters", this.state.theaters))
         }).catch(error => {
-            console.log(error)
+            console.log("error from theaters", error)
         })
         }
 
@@ -70,8 +67,8 @@ class Profile extends Component {
         return (
             <div>
                 profile
-                <CurrentMoviesContainer />
-                <MapContainer theaters={this.state.theaters} center={this.state.center}/>
+                <CurrentMoviesContainer user={this.props.user}/>
+                <MapContainer user={this.props.user} theaters={this.state.theaters} center={this.state.center}/>
             </div>
         )
     }
