@@ -4,27 +4,39 @@ import List from './List'
 class SearchMoviesContainer extends Component {
 
 
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
         this.state = {
             allMovies: [],
             search: ""
         }
 
-        fetch("http://localhost:3000/movies")
+        fetch("http://localhost:3000/movies", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        })
         .then(response => response.json())
         .then(movieData => this.renderMovies(movieData))
         // .then(movieData => console.log(movieData))
 
     }
     renderMovies = (movieData) => {
-        
+        console.log(movieData)
+        debugger
+
+        let myMovies = movieData.filter(movie => {
+            if (movie.users.length > 0) {
+            return movie.users.every(user => {
+                return user.id === this.props.user.id
+            })
+            }
+        })
+
         this.setState({
-            allMovies: movieData
+            allMovies: myMovies
         }, ()=>  console.log("after render", this.state.allMovies)
         )
-
-        
     }
 
     handleChange = (e) => {
@@ -39,7 +51,7 @@ class SearchMoviesContainer extends Component {
                 <div>
                     <h2>{this.state.movieData}</h2>
 
-                    {/* <List handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} /> */}
+                    <List user={this.props.user} handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} />
                 </div>
         )
     }

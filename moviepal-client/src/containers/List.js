@@ -4,11 +4,13 @@ import MovieDetails from '../components/movieList_components/MovieDetails'
 
 class List extends React.Component {
     
-
-    state = {
-        displayAllMovies: true,
-        movie: "",
-        // allMovies: this.props.allMovies  
+    constructor(props) {
+        super(props)
+        console.log("list props", props)
+        this.state = {
+            displayAllMovies: true,
+            movie: "",
+        }
     }
 
     displayOneMovie = (movie) => {
@@ -19,7 +21,7 @@ class List extends React.Component {
     }
 
     render(){
-        if (!!this.props.allMovies) {
+        if (this.props.allMovies.length > 0) {
             let allMovies = this.props.allMovies.filter((movie) => {
                 return movie.title.indexOf(this.props.search) !== -1;
             })
@@ -28,7 +30,7 @@ class List extends React.Component {
             <div>
                 
                 <input onChange = {this.props.handleChange} placeholder = "Search Your Movies" />
-                <MovieCollection allMovies = {"allMovies"} handleClick = {this.displayOneMovie} />
+                <MovieCollection allMovies = {this.props.user.movies} handleClick = {this.displayOneMovie} />
 
                 <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} 
                 />

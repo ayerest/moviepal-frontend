@@ -7,6 +7,7 @@ class Settings extends Component {
     
     constructor(props) {
         super(props)
+        debugger
     }
     
     state = {
@@ -60,7 +61,8 @@ class Settings extends Component {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.token}`
                 },
                 body: 
                 JSON.stringify({

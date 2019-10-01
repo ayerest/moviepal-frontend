@@ -15,7 +15,7 @@ class App extends Component {
     }
   }
 
-  getLoggedIn = (data) => {
+  getLoggedIn = (data, wherefrom) => {
     fetch('http://localhost:3000/profile', {
       method: 'GET',
       headers: {

@@ -42,7 +42,6 @@ handleSubmit = (e) => {
 
     fetch("http://localhost:3000/login", {
       method: "POST",
-      // mode: 'no-cors',
       headers: {
         "Content-Type": "application/json",
         Accepts: "application/json"
@@ -53,7 +52,6 @@ handleSubmit = (e) => {
       })
     })
     .then(response => response.json())
-    .then(data => console.log(data))
     .then(json => {
       //do something to update App state to deal with the logged_in status
       if (json.jwt) {

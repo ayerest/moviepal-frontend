@@ -5,21 +5,25 @@ import Movie from '../components/Movie'
 class CurrentMoviesContainer extends Component {
     
     // props: movieSearch, user
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             currentMovies: []
         }
+
         //the genres should come from the user's preferences - probably stored as a prop
         // passed up from settings component to be stored in state in app and then passed down
-
+        console.log("are genres here?", this.props)
+        // debugger
+        let genres = this.props.user.genres
         fetch('http://localhost:3000/tomatoes', {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.token}`
             },
             body: JSON.stringify({
-                genres: ["Horror", "Action"]
+                genres: ["Comedy", "Western", "Action"]
             })
         }).then(response => response.json())
             .then(data => {
@@ -50,7 +54,7 @@ class CurrentMoviesContainer extends Component {
     render() {
         return (
             <div>
-                <p>Current movies</p>
+                <h2 className="current-movies">Current movies</h2>
                 {this.displayCurrentMovies()}
             </div>
         )

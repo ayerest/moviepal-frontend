@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import MovieDetails from './MovieDetails'
 
 // put this in a list form
-const Movie = (props) => {
+const MovieListItem = (props) => {
     const {movie, handleClick} = props
 
     return(
@@ -15,4 +15,4 @@ const Movie = (props) => {
 
 }
 
-export default Movie
+export default MovieListItem

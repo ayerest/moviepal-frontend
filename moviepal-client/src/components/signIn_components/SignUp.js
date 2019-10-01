@@ -48,7 +48,7 @@ class SignUp extends Component {
             .then(data => {
                 console.log("after sign up form", data)
                 // debugger
-                this.props.onSignUp(data)
+                this.props.onSignUp(data, "signup") 
             })
 
     }

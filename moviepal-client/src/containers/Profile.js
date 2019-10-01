@@ -25,7 +25,9 @@ class Profile extends Component {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    "Accept": "application/json",
+                    'Authorization': `Bearer ${localStorage.token}`
+
                 },
                 body: JSON.stringify({
                     city: city
@@ -45,7 +47,8 @@ class Profile extends Component {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                'Authorization': `Bearer ${localStorage.token}`
                 },
             body: JSON.stringify({
                 latLong: centerPointHash
@@ -66,7 +69,6 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                profile
                 <CurrentMoviesContainer user={this.props.user}/>
                 <MapContainer user={this.props.user} theaters={this.state.theaters} center={this.state.center}/>
             </div>
