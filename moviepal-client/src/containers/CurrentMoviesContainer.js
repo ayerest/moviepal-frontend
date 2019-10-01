@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import Movie from '../components/Movie'
 import MovieListItem from '../components/movieList_components/MovieListItem'
+
 
 class CurrentMoviesContainer extends Component {
     

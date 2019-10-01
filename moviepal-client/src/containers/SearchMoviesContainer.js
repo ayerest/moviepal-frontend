@@ -14,19 +14,15 @@ class SearchMoviesContainer extends Component {
         fetch("http://localhost:3000/movies")
         .then(response => response.json())
         .then(movieData => this.renderMovies(movieData))
-        .then(movieData => console.log(movieData))
+        // .then(movieData => console.log(movieData))
 
     }
-
-    
-
     renderMovies = (movieData) => {
         
         this.setState({
             allMovies: movieData
         }, ()=>  console.log("after render", this.state.allMovies)
         )
-        // console.log(movieData[0])
         // console.log(movieData)
 
         

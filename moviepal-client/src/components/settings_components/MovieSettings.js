@@ -4,33 +4,32 @@ import React, { Component } from 'react'
 class MovieSettings extends Component {
     constructor(props) {
         super(props)
-        
-        this.state = {
-            genres: {
-                action: false, adventure: false, animation: false, biography: false, comedy: false,
-                crime: false, documentary: false, drama: false, family: false, fantasy: false,
-                filmNoir: false, history: false, horror: false, music: false, musical: false,
-                mystery: false, romance: false, sciFi: false, short: false, sport: false,
-                superhero: false, thriller: false, war: false, western: false
-            }
-        }
+        // debugger
+        // console.log(this.props.allGenres)
     }
-  
-    
+
+    displayGenres () {
+        return(
+        Object.keys(this.props.allGenres).map(genre => {
+            return(       
+                <div>
+            <label id = {genre}>
+            {genre}</label>
+            <input type = "checkbox" name = {genre} onChange = {this.props.onGenreChange}
+            // value= {this.props.allGenres[genre]}
+            />
+            </div>
+            )
+        }
+        ))
+    }
+
     render() {
-        const genres = ["Action","Adventure","Animation","Biography","Comedy","Crime","Documentary","Drama","Family","Fantasy","Film Noir","History","Horror","Music","Musical","Mystery","Romance","Sci-Fi","Short","Sport","Superhero","Thriller","War","Western"]
         return (
-                genres.map((genre, i) => {
-                    return (
-                        // <Label>Pick Your Favorite Genres</Label>
-                        <label key = {i}>
-                        {genre}
-                        <input type = "checkbox" name = {genre} onChange = {this.onGenreChange.bind(this)}
-                        value= {this.state.genres[genre]}/>
-                        </label>
-                    )
-                })
-                
+            <form onSubmit = {this.props.onGenreSubmit}>
+                {this.displayGenres()}
+            <input type= "submit" value = "Save genre preferences" />
+            </form>
         )
     }
 }
