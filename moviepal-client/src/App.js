@@ -23,7 +23,7 @@ class App extends Component {
       }
     }).then(response => response.json())
     .then(data => {
-      debugger
+      // debugger
       this.setState({
         logged_in: true,
         user: data.user
