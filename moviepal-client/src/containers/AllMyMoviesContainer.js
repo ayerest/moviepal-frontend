@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import List from './List'
+import PrivacyHOC from '../HOC/PrivacyHOC'
+
 
 class AllMyMoviesContainer extends Component {
     constructor (props) {
@@ -109,4 +111,4 @@ class AllMyMoviesContainer extends Component {
     }
 }
 
-export default AllMyMoviesContainer
+export default PrivacyHOC(AllMyMoviesContainer)
