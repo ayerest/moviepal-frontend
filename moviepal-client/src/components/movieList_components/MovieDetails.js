@@ -5,7 +5,11 @@ class MovieDetails extends Component {
     constructor(props) {
         super(props)
         // debugger
+        
     }
+
+
+
     render() {
         let { title, summary, rating, poster_img, runtime, stars, trailer } = this.props.movie
         // debugger
@@ -14,7 +18,10 @@ class MovieDetails extends Component {
                 <h2>Title: {title}</h2>
                 <img alt="poster for movie" src={poster_img}></img>
                 {/* <p>{genres.join(", ")}</p> */}
-                <button>❤️</button>
+                <button name = "like-btn" onClick = {this.props.handleOnLike}> ❤️</button>
+                <button name = "dislike-btn" onClick = {this.props.handleOnDisLike}> naw </button>
+                <button name = "to-see-btn" onClick= {this.props.handleOnToSee}> ?! </button>
+
                 <p>Summary: {summary}</p>
                 <ul>
                     <li>Rating: {rating}</li>

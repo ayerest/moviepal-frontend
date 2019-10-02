@@ -11,6 +11,7 @@ class Settings extends Component {
     }
     
     state = {
+        //we only have users genres-must hard code all...?
         genres: {
             action: false, adventure: false, animation: false, biography: false, comedy: false,
             crime: false, documentary: false, drama: false, family: false, fantasy: false,
@@ -24,7 +25,7 @@ class Settings extends Component {
             username: this.props.username,
             password: "",
             city: this.props.city,
-            twilio: this.props.twilio
+            notifications: this.props.notifications
         }
     }
     
@@ -71,7 +72,7 @@ class Settings extends Component {
                     password: e.target.password.value,
                     //edit password-research further with auth
                     city: e.target.city.value,
-                    twilio: e.target.twilio.value
+                    notifications: e.target.notifications.value
                 })
             
             })
