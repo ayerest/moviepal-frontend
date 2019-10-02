@@ -33,10 +33,13 @@ class MovieDetails extends Component {
                 <h2>Title: {title}</h2>
                 <img alt="poster for movie" src={poster_img}></img>
                 {/* <p>{genres.join(", ")}</p> */}
-                <button>❤️</button>
                 
                 <button onClick={this.showTrailer} value={trailer}>Watch Trailer</button>
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
+                <button name = "like-btn" onClick = {this.props.handleOnLike}> ❤️</button>
+                <button name = "dislike-btn" onClick = {this.props.handleOnDisLike}> naw </button>
+                <button name = "to-see-btn" onClick= {this.props.handleOnToSee}> ?! </button>
+
                 <p>Summary: {summary}</p>
                 <ul>
                     <li>Rating: {rating}</li>

@@ -1,13 +1,10 @@
-import React, {Component} from 'react'
-import ModalContainer from '../../containers/ModalContainer.js'
-import SignUp from './SignUp'
+import React, {Component, Button} from 'react'
+import ModalContainer from './ModalContainer'
 
 
 class SignIn extends Component {
-
-
-constructor () {
-    super()
+constructor (props) {
+    super(props)
     this.state = {
         fields: {
             username: "",
@@ -17,16 +14,24 @@ constructor () {
                 username: "",
                 password: "",
                 city: ""
-        },
-        showModal: false,
-        error: false
-        
-    }
-    
-}
-this.handleSubmit = this.handleSubmit.bind(this)
+            }
+          },  
+        signUpState: true  
+    }  
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.toggleShow = this.toggleShow.bind(this)
+    this.handleChange = this.handleChange.bind(this)
 }
 
+toggleShow () {
+  //   this.setState=({
+  //     !this.state.signUpState
+  //   })
+    this.setState = ({
+      signUpState: false
+  })
+  }
+  
 
 handleChange = (e) => {
     let newVal = e.target.value
@@ -62,19 +67,8 @@ handleSubmit = (e) => {
     })
 
   }
-
-    openModal() {
-        this.setState({
-          showModal: true
-        });
-      }
-     
-      closeModal() {
-        this.setState({
-          showModal: false,
-        //   error: null
-        });
-      }
+  
+  
 
     render() {
         const {fields} = this.state;
@@ -92,25 +86,21 @@ handleSubmit = (e) => {
                       <input name="password" type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
                     </div>
                     <button type = "submit">Sign In</button>
-                  </form>
-              {/* <div>
-                  <button onClick = {e => {
-                  this.showModal()}}
-                >New User? Sign Up!
-                  </button>
-                  <SignUp showModal= {this.state.showModal} onClose = {this.showModal} />
-              </div> */}
+                  </form> 
                 <div>
-                  <button onClick={() => this.openModal()}>Open Modal</button>
- 
-                  <SignUp
-                  visible={this.state.showModal}
-                  onCloseModal={this.closeModal.bind(this)}
-                  error={this.state.error} />
+                <button type = "button"
+                  variant="primary"
+                  onClick={ this.state.toggleShow}
+                  >Don't have an account? Sign Up! 
+                  <ModalContainer />
+                  </button>
                 </div>
+                  
+ 
+          
           
             </div>
-          </div>
+            </div>
       )
   
     }

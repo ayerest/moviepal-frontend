@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import ModalContainer from '../../containers/ModalContainer.js'
+import ModalContainer from '../signIn_components/ModalContainer'
 
 class Search extends Component {
     constructor(props) {
