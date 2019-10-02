@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProfileSettings from '../components/settings_components/ProfileSettings'
 import MovieSettings from '../components/settings_components/MovieSettings'
+import PrivacyHOC from '../HOC/PrivacyHOC'
 
 
 class Settings extends Component {
@@ -94,4 +95,4 @@ class Settings extends Component {
 }
 
 
-export default Settings
+export default PrivacyHOC(Settings)

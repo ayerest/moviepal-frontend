@@ -1,6 +1,8 @@
 import React from 'react'
 import Profile from './Profile'
 import SignIn from '../components/signIn_components/SignIn'
+// import PrivacyHOC from '../HOC/PrivacyHOC'
+
 
 class Home extends React.Component {
     constructor(props){
