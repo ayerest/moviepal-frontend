@@ -68,7 +68,6 @@ class Settings extends Component {
                 body: 
                 JSON.stringify({
                     name: e.target.name.value,
-                    username: e.target.username.value,
                     city: e.target.city.value,
                     notifications: e.target.notifications.value
                 })

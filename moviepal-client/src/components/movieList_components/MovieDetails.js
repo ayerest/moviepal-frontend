@@ -49,10 +49,20 @@ class MovieDetails extends Component {
                 <p>{genres.join(", ")}</p> : null
                 }
                 <button onClick={this.showTrailer} value={trailer}>Watch Trailer</button>
-                {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
-                <button name = "like" id = {id} onClick = {this.props.handleOnLike(this.props.user.id, this.props.movie.id)}> ❤️</button>
-                <button name = "unlike" id = {id} onClick = {this.props.handleOnUnLike(this.props.user.id, this.props.movie.id)}> naw </button>
-                <button name = "to-watch" id = {id} onClick= {this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)}> ?! </button>
+
+                {!!this.state.trailer ? 
+                <Trailer trailer={this.state.trailer}></Trailer> : null }
+
+                <button name = "like" 
+                id = {id} 
+                onClick = {this.props.handleOnLike}
+                // (this.props.user.id, this.props.movie.id)
+
+                > ❤️</button>
+
+                {/* <button name = "unlike" id = {id} onClick = {this.props.handleOnUnLike(this.props.user.id, this.props.movie.id)}> naw </button>
+
+                <button name = "to-watch" id = {id} onClick= {this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)}> ?! </button> */}
 
                 <p>Summary: {summary}</p>
                 <ul>

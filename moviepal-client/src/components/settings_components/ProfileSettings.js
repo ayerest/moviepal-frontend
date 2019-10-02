@@ -6,7 +6,6 @@ class ProfileSettings extends Component {
         super(props)
     }
 
-
     render() {
         return (
             <form onSubmit = {this.props.onSubmitProfile}>

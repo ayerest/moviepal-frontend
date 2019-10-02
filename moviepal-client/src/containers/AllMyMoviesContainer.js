@@ -46,6 +46,7 @@ class AllMyMoviesContainer extends Component {
     }
 
     handleOnLike = (props) => {
+        console.log("like triggered")
         // var myMovieId = btn.id
         // var myLike = "test"
         // let likeId = btn.name
@@ -55,17 +56,17 @@ class AllMyMoviesContainer extends Component {
         // let myMovie = Movie.all.find_by(movie_id === likeId)
         // debugger
 
-        let myLike = (fetch(`http://localhost:3000/rottens`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${localStorage.token}`
-            },
-            body: JSON.stringify({
-                user_id: this.props.user.id,
-                movie_id: this.props.movie.id
-            })
-        })
-        .then(response => response.json()))
+        // let myLike = (fetch(`http://localhost:3000/rottens`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': `Bearer ${localStorage.token}`
+        //     },
+        //     body: JSON.stringify({
+        //         user_id: this.props.user.id,
+        //         movie_id: this.props.movie.id
+        //     })
+        // })
+        // .then(response => response.json()))
         
         // //then post to that fetch
         // fetch(`http://localhost:3000/likes${likeId}`, {
