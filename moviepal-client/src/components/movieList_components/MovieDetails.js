@@ -25,33 +25,42 @@ class MovieDetails extends Component {
         }
     }
     
+    // onLike = (e) => {
+    //     let movie = this.props.movie
+    //     let btn = e.target
+    //     this.props.handleOnLike(btn)
+    // }
+
     render() {
-        let { title, summary, rating, poster_img, runtime, stars, trailer, showtimes, genres } = this.props.movie
-        // debugger
+        let { title, summary, rating, poster_img, runtime, stars, trailer, showtimes, genres, likes, id } = this.props.movie
+        if (!!likes && likes.length > 0) {
+            likes = likes.filter(like => {
+                return like.user_id === this.props.user.id
+            })
+        }
+
+        console.log("what likes I got", likes)
+
         return (
             <div className="ui-card">
                 <h2>Title: {title}</h2>
                 <img alt="poster for movie" src={poster_img}></img>
-                {/* <p>{genres.join(", ")}</p> */}
-                
+                {!!genres && genres.length > 0 ?
+                <p>{genres.join(", ")}</p> : null
+                }
                 <button onClick={this.showTrailer} value={trailer}>Watch Trailer</button>
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
-                <button name = "like-btn" onClick = {this.props.handleOnLike}> ❤️</button>
-                <button name = "dislike-btn" onClick = {this.props.handleOnDisLike}> naw </button>
-                <button name = "to-see-btn" onClick= {this.props.handleOnToSee}> ?! </button>
+                <button id = {id} onClick = {this.props.handleOnLike}> ❤️</button>
+                <button name = "unlike" onClick = {this.props.handleOnUnLike}> naw </button>
+                <button name = "to-watch" onClick= {this.props.handleOnToWatch}> ?! </button>
 
                 <p>Summary: {summary}</p>
                 <ul>
                     <li>Rating: {rating}</li>
                     <li>Runtime: {runtime}</li>
-                    <li>Starring: {stars}</li>
-                    {/* <li><a rel="noopener noreferrer" target="_blank" href={trailer}>Trailer</a></li> */}
-                    
+                    <li>Starring: {stars}</li>                    
                 </ul>
                 <p><a rel="noopener noreferrer" target="_blank" href={showtimes}>Click for Showtimes</a></p>
-                {/* <h3>Trailer</h3>
-                <iframe src={trailer} allowFullScreen width="854" height="400"></iframe> */}
-
             </div>
         )
     }

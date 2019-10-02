@@ -48,19 +48,27 @@ class AllMyMoviesContainer extends Component {
 
     // // incorrect method or syntax?
 
-    // handleOnLike = () => {
-    //     fetch(`http://localhost:3000/likes${likeId}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'Authorization': `Bearer ${localStorage.token}`
-    //         },
-    //         body: JSON.stringify({
-    //             like: true
-    //         })
-    //     })
-    //     .then(response => response.json())
-    //     .then(likes => console.log(likes))
-    // }
+    handleOnLike = (btn) => {
+        
+        let likeId = btn.name
+        let movieId = btn.id
+        // let field = btn.name
+        // let myLike = Like.all.find_by(movie_id === likeId)
+        // let myMovie = Movie.all.find_by(movie_id === likeId)
+        debugger
+        fetch(`http://localhost:3000/likes/${likeId}`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                "like": true,
+                "user": `${this.props.user}`
+            })
+        })
+        .then(response => response.json())
+        .then(likes => console.log(likes))
+    }
 
     // handleOnDisLike = () =>{
     //     fetch(`http://localhost:3000/likes${likeId}`, {

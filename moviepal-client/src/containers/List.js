@@ -10,7 +10,7 @@ class List extends React.Component {
         console.log("list props", props)
         this.state = {
             displayAllMovies: true,
-            movie: "",
+            movie: null,
             searchTerm: ""
         }
     }
@@ -38,13 +38,14 @@ class List extends React.Component {
         return(
             <div>
                 <Search onHandleSearch={this.handleSearch}/>
-                <MovieCollection allMovies = {this.props.allMovies} handleClick = {this.displayOneMovie} searchTerm={this.state.searchTerm} />
-                <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} /> 
+                <MovieCollection user={this.props.user} allMovies={this.props.allMovies} handleClick={this.displayOneMovie} searchTerm={this.state.searchTerm} movie={this.state.movie}  handleOnLike={this.props.handleOnLike} />
+                {/* <MovieDetails user={this.props.user} displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} handleOnLike={this.props.handleOnLike}/>  */}
                 {/* 
                 <Search handleSearch={this.props.handleChange}/>
                 <MovieCollection allMovies = {this.props.allMovies} handleClick = {this.displayOneMovie} />
                 <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} handleOnLike = {this.props.handleOnLike} handleOnDisLike = {this.props.handleOnDisLike} handleOnToSee = {this.props.handleOnToSee}> 
                     */}
+                {!!this.state.movie ? <MovieDetails movie={this.state.movie} handleOnLike={this.props.handleOnLike} handleOnUnLike={this.props.handleOnUnLike} handleOnToWatch={this.props.handleOnToWatch} user={this.props.user}/> : null } 
             </div>
         )}
 
