@@ -45,53 +45,53 @@ class AllMyMoviesContainer extends Component {
         })
     }
 
-    var likeId = Like.find(like => {
-        like.movie_id == Movie.first.id
-    })
+    // var likeId = Like.find(like => {
+    //     like.movie_id == Movie.first.id
+    // })
     //incorrect method or syntax?
 
-    handleOnLike = () => {
-        fetch(`http://localhost:3000/likes${likeId}`, {
-            method: 'PATCH',
-            headers: {
-                'Authorization': `Bearer ${localStorage.token}`
-            },
-            body: JSON.stringify({
-                like: true
-            })
-        })
-        .then(response => response.json())
-        .then(likes => console.log(likes))
-    }
+    // handleOnLike = () => {
+    //     fetch(`http://localhost:3000/likes${likeId}`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             'Authorization': `Bearer ${localStorage.token}`
+    //         },
+    //         body: JSON.stringify({
+    //             like: true
+    //         })
+    //     })
+    //     .then(response => response.json())
+    //     .then(likes => console.log(likes))
+    // }
 
-    handleOnDisLike = () =>{
-        fetch(`http://localhost:3000/likes${likeId}`, {
-            method: 'PATCH',
-            headers: {
-                'Authorization': `Bearer ${localStorage.token}`
-            },
-            body: JSON.stringify({
-                unlike: true
-            })
-        })
-        .then(response => response.json())
-        .then(likes => console.log(likes))
-    }
+    // handleOnDisLike = () =>{
+    //     fetch(`http://localhost:3000/likes${likeId}`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             'Authorization': `Bearer ${localStorage.token}`
+    //         },
+    //         body: JSON.stringify({
+    //             unlike: true
+    //         })
+    //     })
+    //     .then(response => response.json())
+    //     .then(likes => console.log(likes))
+    // }
     
 
-    handleOnToSee = () =>{
-        fetch(`http://localhost:3000/likes${likeId}`, {
-            method: 'PATCH',
-            headers: {
-                'Authorization': `Bearer ${localStorage.token}`
-            },
-            body: JSON.stringify({
-                to_see: true
-            })
-        })
-        .then(response => response.json())
-        .then(likes => console.log(likes))
-    }
+    // handleOnToSee = () =>{
+    //     fetch(`http://localhost:3000/likes${likeId}`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             'Authorization': `Bearer ${localStorage.token}`
+    //         },
+    //         body: JSON.stringify({
+    //             to_see: true
+    //         })
+    //     })
+    //     .then(response => response.json())
+    //     .then(likes => console.log(likes))
+    // }
 
     render() {
         return (
