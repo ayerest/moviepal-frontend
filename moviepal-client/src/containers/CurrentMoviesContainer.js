@@ -13,9 +13,10 @@ class CurrentMoviesContainer extends Component {
 
         //the genres should come from the user's preferences - probably stored as a prop
         // passed up from settings component to be stored in state in app and then passed down
-        console.log("are genres here?", this.props)
+        // console.log("are genres here?", this.props)
         // debugger
-        let genres = this.props.user.genres
+        let genres = this.props.user.genres.map(genre => genre.name)
+        // console.log("user needs genres", genres)
         fetch('http://localhost:3000/tomatoes', {
             method: 'POST',
             headers: {
@@ -23,7 +24,7 @@ class CurrentMoviesContainer extends Component {
                 'Authorization': `Bearer ${localStorage.token}`
             },
             body: JSON.stringify({
-                genres: ["Comedy", "Western", "Action"],
+                genres: genres,
                 user: this.props.user
             })
         }).then(response => response.json())

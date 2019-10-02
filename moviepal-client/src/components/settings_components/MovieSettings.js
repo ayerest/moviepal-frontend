@@ -4,8 +4,6 @@ import React, { Component } from 'react'
 class MovieSettings extends Component {
     constructor(props) {
         super(props)
-        // debugger
-        // console.log(this.props.allGenres)
     }
 
     displayGenres () {

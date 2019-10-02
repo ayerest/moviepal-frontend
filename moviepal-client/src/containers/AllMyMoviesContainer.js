@@ -3,12 +3,10 @@ import List from './List'
 
 class AllMyMoviesContainer extends Component {
 
-
     constructor (props) {
         super(props)
         this.state = {
             allMovies: [],
-            search: ""
         }
 
         fetch("http://localhost:3000/movies", {
@@ -23,10 +21,8 @@ class AllMyMoviesContainer extends Component {
             
     }
     renderMovies = (movieData) => {
-
         let myMovies = movieData.filter(movie => {
             if (movie.users.length > 0) {
-                // debugger
             return movie.users.every(movieuser => {
                 return movieuser.id === this.props.user.id
             })
@@ -39,12 +35,6 @@ class AllMyMoviesContainer extends Component {
         )
     }
 
-    handleChange = (e) => {
-        this.setState({
-          search: e.target.value
-        })
-  
-      }
 
     render() {
         return (

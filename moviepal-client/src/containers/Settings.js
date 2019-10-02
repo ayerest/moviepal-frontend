@@ -7,7 +7,7 @@ class Settings extends Component {
     
     constructor(props) {
         super(props)
-        debugger
+        // debugger
     }
     
     state = {
