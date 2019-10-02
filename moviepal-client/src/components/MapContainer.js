@@ -4,8 +4,8 @@ import { GoogleApiWrapper, Map, InfoWindow, Marker } from 'google-maps-react'
 // import {GoogleMap, LoadScript} from 'react-google-maps'
 
 const mapStyles = {
-    width: '95vw',
-    height: '50vh'
+    width: '60vw',
+    height: '90vh'
 }
 
 class MapContainer extends Component {
@@ -67,6 +67,7 @@ class MapContainer extends Component {
             <div>
                 {!!this.props.center ? 
                     (<div>
+                        <h3>Theaters Near Me</h3>
                         <Map google={this.props.google}
                         zoom={14}
                         style={mapStyles}
@@ -75,9 +76,11 @@ class MapContainer extends Component {
                         {this.displayMarkers()}
                         <InfoWindow
                             marker = { this.state.activeMarker }
-                            visible = { this.state.showingInfoWindow }
-                            ><a href={this.state.infoWindowContent.url}>{this.state.infoWindowContent.name}</a>
-                            <p>{this.state.infoWindowContent.addy}</p>
+                            visible = { this.state.showingInfoWindow }>
+                            <div>
+                                <a href={this.state.infoWindowContent.url}>{this.state.infoWindowContent.name}</a>
+                                <p>{this.state.infoWindowContent.addy}</p>
+                            </div>
                         </InfoWindow>
                      </Map>
                     </div>) : null

@@ -11,6 +11,7 @@ class List extends React.Component {
         this.state = {
             displayAllMovies: true,
             movie: "",
+            searchTerm: ""
         }
     }
 
@@ -21,9 +22,12 @@ class List extends React.Component {
         })
     }
 
-    handleSearch = (e) => {
-        let searchTerm = e.target.value
+    handleSearch = (searchTerm) => {
+        this.setState(prevState => {
+            return {searchTerm: searchTerm}
+        })
     }
+
 
     render(){
         if (this.props.allMovies.length > 0) {
@@ -33,11 +37,14 @@ class List extends React.Component {
         }
         return(
             <div>
+                <Search onHandleSearch={this.handleSearch}/>
+                <MovieCollection allMovies = {this.props.allMovies} handleClick = {this.displayOneMovie} searchTerm={this.state.searchTerm} />
+                <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} /> 
+                {/* 
                 <Search handleSearch={this.props.handleChange}/>
                 <MovieCollection allMovies = {this.props.allMovies} handleClick = {this.displayOneMovie} />
-
-                <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} handleOnLike = {this.props.handleOnLike} handleOnDisLike = {this.props.handleOnDisLike} handleOnToSee = {this.props.handleOnToSee}
-                />
+                <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} handleOnLike = {this.props.handleOnLike} handleOnDisLike = {this.props.handleOnDisLike} handleOnToSee = {this.props.handleOnToSee}> 
+                    */}
             </div>
         )}
 

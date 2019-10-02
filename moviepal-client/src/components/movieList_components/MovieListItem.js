@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
-import MovieDetails from './MovieDetails'
+// import MovieDetails from './MovieDetails'
 
 // put this in a list form
-const MovieListItem = (props) => {
-    const {movie, handleClick} = props
+class MovieListItem extends Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        const {movie, handleClick} = this.props
+    
+        return(
+            <div className = "ui card"
+            key = {movie.id}
+            onClick = {()=> handleClick(movie)}>
+                <a>{movie.title}</a>
+            </div>
+        )
 
-    return(
-        <div className = "ui card"
-        key = {movie.id}
-        onClick = {()=> handleClick(movie)}>
-            {movie.title}
-        </div>
-    )
+    }
 
 }
 
