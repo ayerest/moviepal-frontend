@@ -15,7 +15,7 @@ class Home extends React.Component {
           return (<div className="">
           <header className="">
           </header>
-          {!!this.props.userStatus ? 
+          {!!this.props.logged_in ? 
             ( <div> 
                 <Profile user={this.props.user}/>
               </div>

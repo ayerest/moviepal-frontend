@@ -32,7 +32,8 @@ class MovieDetails extends Component {
     // }
 
     render() {
-        let { title, summary, rating, poster_img, runtime, stars, trailer, showtimes, genres, likes, id } = this.props.movie
+        let { title, summary, rating, poster_img, runtime, stars, trailer_url, showtimes, genres, likes, id } = this.props.movie
+        // debugger
         if (!!likes && likes.length > 0) {
             likes = likes.filter(like => {
                 return like.user_id === this.props.user.id
@@ -48,12 +49,15 @@ class MovieDetails extends Component {
                 {!!genres && genres.length > 0 ?
                 <p>{genres.join(", ")}</p> : null
                 }
-                <button onClick={this.showTrailer} value={trailer}>Watch Trailer</button>
+                
+                <button onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
+                {this.props.fromCurrent ? null : <div>
                 <button id = {id} onClick = {this.props.handleOnLike}> ❤️</button>
                 <button name = "unlike" onClick = {this.props.handleOnUnLike}> naw </button>
                 <button name = "to-watch" onClick= {this.props.handleOnToWatch}> ?! </button>
-
+                </div> 
+                }
                 <p>Summary: {summary}</p>
                 <ul>
                     <li>Rating: {rating}</li>

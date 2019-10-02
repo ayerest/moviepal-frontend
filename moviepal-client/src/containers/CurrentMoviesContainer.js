@@ -63,7 +63,7 @@ class CurrentMoviesContainer extends Component {
         //need to figure out where this should live though
         if (this.state.currentMovies.length > 0) {
             return this.state.currentMovies.map((movie, index) => {
-                return <MovieDetails user={this.props.user} movie={movie} key={index} />
+                return <MovieDetails user={this.props.user} movie={movie} key={index} fromCurrent={true} handleOnLike={this.props.handleOnLike} />
             })
         } else {
             return null

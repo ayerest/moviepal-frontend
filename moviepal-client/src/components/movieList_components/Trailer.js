@@ -6,7 +6,7 @@ class Trailer extends Component {
         super(props)
     }
     render() {
-
+        // debugger
         return (
             <div className="ui card">
                 <iframe src={this.props.trailer} allowFullScreen width="854" height="400"></iframe>

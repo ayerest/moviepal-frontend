@@ -105,7 +105,7 @@ class AllMyMoviesContainer extends Component {
         return (
                 <div>
                     <h2>All My Movies</h2>
-                    {this.state.allMovies.length > 0 ? <List user={this.props.user} handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} handleOnLike = {this.handleOnLike} handleOnDisLike = {this.handleOnDisLike} handleOnToSee = {this.handleOnToSee} /> : null }
+                    {this.state.allMovies.length > 0 ? <List user={this.props.user} handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} handleOnLike = {this.handleOnLike} handleOnUnLike = {this.handleOnUnLike} handleOnToWatch = {this.handleOnToWatch} /> : null }
                 </div>
         )
     }

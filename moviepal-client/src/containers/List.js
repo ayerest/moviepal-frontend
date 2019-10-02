@@ -45,7 +45,7 @@ class List extends React.Component {
                 <MovieCollection allMovies = {this.props.allMovies} handleClick = {this.displayOneMovie} />
                 <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} handleOnLike = {this.props.handleOnLike} handleOnDisLike = {this.props.handleOnDisLike} handleOnToSee = {this.props.handleOnToSee}> 
                     */}
-                {!!this.state.movie ? <MovieDetails movie={this.state.movie} handleOnLike={this.props.handleOnLike} handleOnUnLike={this.props.handleOnUnLike} handleOnToWatch={this.props.handleOnToWatch} user={this.props.user}/> : null } 
+                {!!this.state.movie ? <MovieDetails movie={this.state.movie} handleOnLike={this.props.handleOnLike} handleOnUnLike={this.props.handleOnUnLike} handleOnToWatch={this.props.handleOnToWatch} user={this.props.user} fromCurrent={false}/> : null } 
             </div>
         )}
 

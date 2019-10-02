@@ -30,15 +30,25 @@ class App extends Component {
     })
   }
 
+  logOut = () => {
+    localStorage.removeItem("token")
+    this.setState(prevState => {
+      return {
+        logged_in: false,
+        user: null
+      }
+    })
+  }
+
     render() {
       return (
 
         <Router>
-          <NavBar user={this.state.user} loggedIn={this.state.logged_in}/>
+          <NavBar user={this.state.user} loggedIn={this.state.logged_in} onLogOut={this.logOut}/>
           <div>
-            <Route path = '/home' render = { props => <Home {...props} userStatus =   {this.state.logged_in} user = {this.state.user} getLoggedIn= {this.getLoggedIn} /> } />
-            <Route exact path = '/settings' render = { props => <Settings {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
-            <Route exact path = '/mymovies' render = { props => <AllMyMoviesContainer {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
+            <Route path = '/home' render = { props => <Home {...props} logged_in =   {this.state.logged_in} user = {this.state.user} getLoggedIn= {this.getLoggedIn} /> } />
+            <Route exact path = '/settings' render = { props => <Settings {...props} logged_in =   {this.state.logged_in} user = {this.state.user}/> } />
+            <Route exact path = '/mymovies' render = { props => <AllMyMoviesContainer {...props} logged_in =   {this.state.logged_in} user = {this.state.user}/> } />
           </div>
         </Router>
       )
