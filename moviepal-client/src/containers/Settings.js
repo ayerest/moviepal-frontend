@@ -88,7 +88,7 @@ class Settings extends Component {
         return (
             <div>
                 Settings
-                {/* <MovieSettings onGenreChange = {this.onGenreChange} onGenreSubmit = {this.onGenreSubmit} allGenres= {this.state.genres}/> */}
+                <MovieSettings onGenreChange = {this.onGenreChange} onGenreSubmit = {this.onGenreSubmit} allGenres= {this.state.genres}/>
 
                 {/* <ProfileSettings /> */}
 

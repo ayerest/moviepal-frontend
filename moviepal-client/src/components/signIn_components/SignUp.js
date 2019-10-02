@@ -1,33 +1,26 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
+import ModalContainer from './ModalContainer'
 
 class SignUp extends Component {
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             newUser: {
             name: "",
             username: "",
             password: "",
             city: "",
-            showModal: false,
-            // loading: false,
-            // error: null
+
             }
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
-
-    // state = {
-    //     name: "",
-    //     username: "",
-    //     password: "",
-    //     city: ""
-    // }
-
       onSubmit (e) {
           e.preventDefault();
           console.log("userame", e.target.username.value)
+          console.log("city", e.target.city.value)
           fetch("http://localhost:3000/users", {
         method: 'POST',
         headers: {
@@ -48,7 +41,7 @@ class SignUp extends Component {
             .then(data => {
                 console.log("after sign up form", data)
                 // debugger
-                this.props.onSignUp(data, "signup") 
+                // this.props.onSignUp(data, "signup") 
             })
 
     }
@@ -58,22 +51,7 @@ class SignUp extends Component {
             this.setState({fields: newInput})
         }
 
-        openModal = (e) => {
-            this.setState({
-                showModal: true,
-              });
-            this.onSubmit(e)
-        }
-
-        onClose= (e) => {
-            this.props.show = false
-        }
-
-
     render() {
-        // if(!this.props.showModal){
-        //     return null;
-        // }
         return (
             <form onSubmit = {this.onSubmit}>
                 <input ref = "name" type="text" required placeholder="Enter Your Name" id = "name" onChange = {this.handleChange}></input>
@@ -81,12 +59,7 @@ class SignUp extends Component {
                 <input ref = "password" type="password" required placeholder="Enter a new password" id = "password" onChange = {this.handleChange}></input>
                 <input ref = "city" type="text" required placeholder="Enter Your City" id = "city" onChange = {this.handleChange}></input>
                 
-
                 <button type = "Submit">Sign up</button>
-                {/* <button onClose = {e => {
-                    this.onClose(e)
-                }}
-                >Close</button> */}
                 
 
             </form>
