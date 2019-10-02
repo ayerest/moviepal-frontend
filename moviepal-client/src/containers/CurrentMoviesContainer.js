@@ -8,14 +8,20 @@ class CurrentMoviesContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentMovies: []
+            currentMovies: [],
+            randGenres: null
         }
+        let genres = this.props.user.genres.map(genre => genre.name)
 
+        this.grabMoviesFromIMDB(genres)
+        
+    }
+
+    grabMoviesFromIMDB = (genres) => {
         //the genres should come from the user's preferences - probably stored as a prop
         // passed up from settings component to be stored in state in app and then passed down
         // console.log("are genres here?", this.props)
         // debugger
-        let genres = this.props.user.genres.map(genre => genre.name)
         // console.log("user needs genres", genres)
         fetch('http://localhost:3000/tomatoes', {
             method: 'POST',
@@ -71,12 +77,32 @@ class CurrentMoviesContainer extends Component {
         
     }
 
+    feelingLucky = () => {
+        let allgenres = ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir", "History", "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Sport", "Superhero", "Thriller", "War", "Western"]
+        let randomGenres =  []
+        randomGenres.push(allgenres[Math.floor(Math.random() * allgenres.length)])
+        randomGenres.push(allgenres[Math.floor(Math.random() * allgenres.length)])
+        randomGenres.push(allgenres[Math.floor(Math.random() * allgenres.length)])
+        randomGenres.push(allgenres[Math.floor(Math.random() * allgenres.length)])
+        let uniqGenres = randomGenres.filter((item, index) => {
+            return randomGenres.indexOf(item) === index
+        })
+
+        console.log(uniqGenres)
+        // debugger
+        this.setState(prevState => {
+            return {randGenres: uniqGenres}
+        })
+        this.grabMoviesFromIMDB(uniqGenres)
+    }
+
     render() {
         return (
             <div>
-                <button onClick={this.turnOnTwilio}>Send Notification</button>
-
+                {/* <button onClick={this.turnOnTwilio}>Send Notification</button> */}
+                <button onClick={this.feelingLucky}>Feeling Lucky...</button>
                 <h2 className="current-movies">Current movies</h2>
+                <p>Genres: {!!this.state.randGenres ? this.state.randGenres.join(", ") : this.props.user.genres.map(genre => genre.name).join(", ")} </p>
                 {this.displayCurrentMovies()}
             </div>
         )
