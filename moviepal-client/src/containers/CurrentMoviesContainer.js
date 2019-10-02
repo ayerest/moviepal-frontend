@@ -33,6 +33,24 @@ class CurrentMoviesContainer extends Component {
             })
     }
 
+    turnOnTwilio = () => {
+        fetch('http://localhost:3000/notifications', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                movies: this.state.currentMovies,
+                user: this.props.user
+            })
+        }).then(response => response.json())
+        .then(data => {
+            console.log("fetch notifications", data)
+        })
+    }
+
     updateCurrentMovies = (newCurrentMovies) => {
         // console.log("new current", newCurrentMovies)
         this.setState(prevState => {
@@ -56,6 +74,8 @@ class CurrentMoviesContainer extends Component {
     render() {
         return (
             <div>
+                <button onClick={this.turnOnTwilio}>Send Notification</button>
+
                 <h2 className="current-movies">Current movies</h2>
                 {this.displayCurrentMovies()}
             </div>

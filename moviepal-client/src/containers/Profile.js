@@ -64,10 +64,10 @@ class Profile extends Component {
         }
 
 
-
         
     render() {
         return (
+            <div>
             <div className="flex">
                 <div className="movies">
                 <CurrentMoviesContainer user={this.props.user}/>
@@ -75,6 +75,7 @@ class Profile extends Component {
                 <div>
                 <MapContainer user={this.props.user} theaters={this.state.theaters} center={this.state.center}/>
                 </div>
+            </div>
             </div>
         )
     }
