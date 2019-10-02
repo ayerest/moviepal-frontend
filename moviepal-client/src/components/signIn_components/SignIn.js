@@ -17,7 +17,7 @@ constructor (props) {
                 city: ""
             }
           },  
-        signUpState: true  
+        signUpState: false  
     }  
     this.handleSubmit = this.handleSubmit.bind(this)
     // this.toggleShow = this.toggleShow.bind(this)
@@ -90,9 +90,11 @@ handleSubmit = (e) => {
                   variant="primary"
                   onClick={this.toggleShow}
                   >Don't have an account? Sign Up! 
-                  <ModalContainer />
+                  
                   </button>
                 </div>
+                
+                {/* this.state.signUpState = true ? <ModalContainer /> */}
                   
  
           
