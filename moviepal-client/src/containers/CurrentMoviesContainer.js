@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Movie from '../components/Movie'
+import MovieDetails from '../components/movieList_components/MovieDetails'
 // import MovieListItem from '../components/movieList_components/MovieListItem'
 
 class CurrentMoviesContainer extends Component {
@@ -23,7 +23,8 @@ class CurrentMoviesContainer extends Component {
                 'Authorization': `Bearer ${localStorage.token}`
             },
             body: JSON.stringify({
-                genres: ["Comedy", "Western", "Action"]
+                genres: ["Comedy", "Western", "Action"],
+                user: this.props.user
             })
         }).then(response => response.json())
             .then(data => {
@@ -43,7 +44,7 @@ class CurrentMoviesContainer extends Component {
         //need to figure out where this should live though
         if (this.state.currentMovies.length > 0) {
             return this.state.currentMovies.map((movie, index) => {
-                return <Movie user={this.props.user} movie={movie} key={index} />
+                return <MovieDetails user={this.props.user} movie={movie} key={index} />
             })
         } else {
             return null
