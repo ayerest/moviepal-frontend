@@ -7,7 +7,6 @@ import 'semantic-ui-css/semantic.min.css'
 
 // document.addEventListener("DOMContentLoaded", scriptSrcGoogleMaps())
 
-
 ReactDOM.render((
     <App />), document.getElementById('root')
 );
