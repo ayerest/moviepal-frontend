@@ -23,7 +23,6 @@ class Settings extends Component {
         profile: {
             name: this.props.name,
             username: this.props.username,
-            password: "",
             city: this.props.city,
             notifications: this.props.notifications
         }
@@ -69,15 +68,11 @@ class Settings extends Component {
                 JSON.stringify({
                     name: e.target.name.value,
                     username: e.target.username.value,
-                    password: e.target.password.value,
                     city: e.target.city.value,
                     notifications: e.target.notifications.value
                 })
             
             })
-            // .then(Promise.resolve((response => response.json())))
-            // // .then(data => console.log(data))
-            // .catch(err => console.log(err))
     }
     
 
@@ -88,9 +83,9 @@ class Settings extends Component {
         return (
             <div>
                 Settings
-                <MovieSettings onGenreChange = {this.onGenreChange} onGenreSubmit = {this.onGenreSubmit} allGenres= {this.state.genres}/>
+                {/* <MovieSettings onGenreChange = {this.onGenreChange} onGenreSubmit = {this.onGenreSubmit} allGenres= {this.state.genres}/> */}
 
-                {/* <ProfileSettings /> */}
+                <ProfileSettings />
 
             </div>
         )

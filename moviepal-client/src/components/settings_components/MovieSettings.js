@@ -14,7 +14,6 @@ class MovieSettings extends Component {
             <label id = {genre}>
             {genre}</label>
             <input type = "checkbox" name = {genre} onChange = {this.props.onGenreChange}
-            // value= {this.props.allGenres[genre]}
             />
             </div>
             )

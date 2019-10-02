@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import List from './List'
+import { isUnaryLike } from '@babel/types'
 
 class AllMyMoviesContainer extends Component {
     constructor (props) {
@@ -42,33 +43,40 @@ class AllMyMoviesContainer extends Component {
         })
     }
 
-    // var likeId = Like.find(like => {
-    //     like.movie_id == Movie.first.id
-    // })
-
-    // // incorrect method or syntax?
-
-    handleOnLike = (btn) => {
-        
-        let likeId = btn.name
-        let movieId = btn.id
+    handleOnLike = (props) => {
+        // var myMovieId = btn.id
+        // var myLike = "test"
+        // let likeId = btn.name
+        // let movieId = btn.id
         // let field = btn.name
         // let myLike = Like.all.find_by(movie_id === likeId)
         // let myMovie = Movie.all.find_by(movie_id === likeId)
-        debugger
-        fetch(`http://localhost:3000/likes/${likeId}`, {
-            method: 'PATCH',
+        // debugger
+
+        let myLike = (fetch(`http://localhost:3000/rottens`, {
+            method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.token}`
             },
             body: JSON.stringify({
-                "like": true,
-                "user": `${this.props.user}`
+                user_id: this.props.user.id,
+                movie_id: this.props.movie.id
             })
         })
-        .then(response => response.json())
-        .then(likes => console.log(likes))
+        .then(response => response.json()))
+        
+        // //then post to that fetch
+        // fetch(`http://localhost:3000/likes${likeId}`, {
+        // method: 'POST',
+        // headers: {
+        //     'Authorization': `Bearer ${localStorage.token}`
+        // },
+        // body: {}
+        // })
+        // .then(response => response.json())
     }
+
+
 
     // handleOnDisLike = () =>{
     //     fetch(`http://localhost:3000/likes${likeId}`, {
@@ -103,7 +111,14 @@ class AllMyMoviesContainer extends Component {
         return (
                 <div>
                     <h2>All My Movies</h2>
-                    {this.state.allMovies.length > 0 ? <List user={this.props.user} handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} handleOnLike = {this.handleOnLike} handleOnDisLike = {this.handleOnDisLike} handleOnToSee = {this.handleOnToSee} /> : null }
+                    {this.state.allMovies.length > 0 ? 
+                    <List user={this.props.user} handleChange= {this.handleChange}  
+                    search = {this.state.search} 
+                    allMovies = {this.state.allMovies} 
+                    handleOnLike = {this.handleOnLike} 
+                    // handleOnDisLike = {this.handleOnDisLike} 
+                    // handleOnToSee = {this.handleOnToSee} 
+                    /> : null }
                 </div>
         )
     }

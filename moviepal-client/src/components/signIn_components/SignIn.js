@@ -17,7 +17,7 @@ constructor (props) {
                 city: ""
             }
           },  
-        signUpState: false  
+        // signUpState: false  
     }  
     this.handleSubmit = this.handleSubmit.bind(this)
     // this.toggleShow = this.toggleShow.bind(this)
@@ -86,12 +86,17 @@ handleSubmit = (e) => {
                     <button type = "submit">Sign In</button>
                   </form> 
                 <div>
-                <button name= "toggleButton"
+                {/* <button name= "toggleButton"
                   variant="primary"
                   onClick={this.toggleShow}
                   >Don't have an account? Sign Up! 
-                  
-                  </button>
+                </button> */}
+                {/* {
+                  this.state.signUpState ?
+                  <ModalContainer onSignIn={this.props.onSignIn} /> : null
+                } */}
+                <ModalContainer />
+
                 </div>
                 
                 {/* this.state.signUpState = true ? <ModalContainer /> */}

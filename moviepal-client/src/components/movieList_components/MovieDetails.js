@@ -50,9 +50,9 @@ class MovieDetails extends Component {
                 }
                 <button onClick={this.showTrailer} value={trailer}>Watch Trailer</button>
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
-                <button id = {id} onClick = {this.props.handleOnLike}> ❤️</button>
-                <button name = "unlike" onClick = {this.props.handleOnUnLike}> naw </button>
-                <button name = "to-watch" onClick= {this.props.handleOnToWatch}> ?! </button>
+                <button name = "like" id = {id} onClick = {this.props.handleOnLike(this.props.user.id, this.props.movie.id)}> ❤️</button>
+                <button name = "unlike" id = {id} onClick = {this.props.handleOnUnLike(this.props.user.id, this.props.movie.id)}> naw </button>
+                <button name = "to-watch" id = {id} onClick= {this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)}> ?! </button>
 
                 <p>Summary: {summary}</p>
                 <ul>
