@@ -1,5 +1,6 @@
 import React, {Component, Button} from 'react'
 import ModalContainer from './ModalContainer'
+import Modal from 'react-bootstrap/Modal'
 
 
 class SignIn extends Component {
@@ -19,17 +20,14 @@ constructor (props) {
         signUpState: true  
     }  
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.toggleShow = this.toggleShow.bind(this)
+    // this.toggleShow = this.toggleShow.bind(this)
     this.handleChange = this.handleChange.bind(this)
 }
 
-toggleShow () {
-  //   this.setState=({
-  //     !this.state.signUpState
-  //   })
-    this.setState = ({
-      signUpState: false
-  })
+toggleShow = () => {
+    this.setState(prevState => ({
+      signUpState: !prevState.signUpState
+    }))
   }
   
 
@@ -88,9 +86,9 @@ handleSubmit = (e) => {
                     <button type = "submit">Sign In</button>
                   </form> 
                 <div>
-                <button type = "button"
+                <button name= "toggleButton"
                   variant="primary"
-                  onClick={ this.state.toggleShow}
+                  onClick={this.toggleShow}
                   >Don't have an account? Sign Up! 
                   <ModalContainer />
                   </button>

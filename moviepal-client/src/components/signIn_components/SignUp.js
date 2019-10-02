@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
-import ModalContainer from './ModalContainer'
 
 class SignUp extends Component {
 

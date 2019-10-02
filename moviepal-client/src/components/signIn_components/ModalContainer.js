@@ -1,6 +1,6 @@
-import React, {useState , Button} from 'react'
+import React, {useState} from 'react'
 import SignUp from './SignUp'
-import Modal from 'react-bootstrap/Modal'
+import { Modal, Button } from 'react-bootstrap'
 
 function ModalContainer (props) {
     const [show, setShow] = useState(false);
@@ -8,22 +8,26 @@ function ModalContainer (props) {
     const handleShow = () => setShow(true)
 
         return(
-            <Modal show={show} 
+          <div>
+            <Modal style ={{opacity:1}} fade= {false} show={show} 
             onHide = {handleClose}>
             <Modal.Header closeButton >
           </Modal.Header>
           <Modal.Body>
+
           <SignUp />
+          
           </Modal.Body>
           <Modal.Footer>
-            <Button variant = "secondary" onClick = {handleClose}>
+            <Button onClick = {handleClose}>
               Close
             </Button>
-            <Button variant = "primary" onClick = {handleClose}>
+            <Button onClick = {handleClose}>
             Create username
             </Button>
           </Modal.Footer>
           </Modal>
+          </div>
         )
 }
 

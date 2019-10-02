@@ -50,6 +50,7 @@ class MapContainer extends Component {
         })
     }
     displayMarkers = () => {
+        // debugger
         if (!!this.props.theaters) {
             return this.props.theaters.map((theater, index) => {
                 let lat = theater.latlong["lat"]

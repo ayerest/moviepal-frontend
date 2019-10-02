@@ -70,7 +70,6 @@ class Settings extends Component {
                     name: e.target.name.value,
                     username: e.target.username.value,
                     password: e.target.password.value,
-                    //edit password-research further with auth
                     city: e.target.city.value,
                     notifications: e.target.notifications.value
                 })

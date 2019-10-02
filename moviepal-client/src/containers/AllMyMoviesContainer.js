@@ -45,7 +45,8 @@ class AllMyMoviesContainer extends Component {
     // var likeId = Like.find(like => {
     //     like.movie_id == Movie.first.id
     // })
-    //incorrect method or syntax?
+
+    // // incorrect method or syntax?
 
     handleOnLike = (btn) => {
         
