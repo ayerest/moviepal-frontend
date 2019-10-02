@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import List from './List'
 
-class SearchMoviesContainer extends Component {
+class AllMyMoviesContainer extends Component {
 
 
     constructor (props) {
@@ -17,18 +17,18 @@ class SearchMoviesContainer extends Component {
             }
         })
         .then(response => response.json())
-        .then(movieData => this.renderMovies(movieData))
-        // .then(movieData => console.log(movieData))
-
+        .then(movieData => {
+            this.renderMovies(movieData)
+        })
+            
     }
     renderMovies = (movieData) => {
-        console.log(movieData)
-        debugger
 
         let myMovies = movieData.filter(movie => {
             if (movie.users.length > 0) {
-            return movie.users.every(user => {
-                return user.id === this.props.user.id
+                // debugger
+            return movie.users.every(movieuser => {
+                return movieuser.id === this.props.user.id
             })
             }
         })
@@ -49,12 +49,11 @@ class SearchMoviesContainer extends Component {
     render() {
         return (
                 <div>
-                    <h2>{this.state.movieData}</h2>
-
-                    <List user={this.props.user} handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} />
+                    <h2>All My Movies</h2>
+                    {this.state.allMovies.length > 0 ? <List user={this.props.user} handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} /> : null }
                 </div>
         )
     }
 }
 
-export default SearchMoviesContainer
+export default AllMyMoviesContainer

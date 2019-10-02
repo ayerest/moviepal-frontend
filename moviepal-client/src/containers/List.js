@@ -1,6 +1,7 @@
 import React from "react";
 import MovieCollection from '../components/movieList_components/MovieCollection'
 import MovieDetails from '../components/movieList_components/MovieDetails'
+import Search from '../components/movieList_components/Search'
 
 class List extends React.Component {
     
@@ -20,6 +21,10 @@ class List extends React.Component {
         })
     }
 
+    handleSearch = (e) => {
+        let searchTerm = e.target.value
+    }
+
     render(){
         if (this.props.allMovies.length > 0) {
             let allMovies = this.props.allMovies.filter((movie) => {
@@ -28,9 +33,8 @@ class List extends React.Component {
         }
         return(
             <div>
-                
-                <input onChange = {this.props.handleChange} placeholder = "Search Your Movies" />
-                <MovieCollection allMovies = {this.props.user.movies} handleClick = {this.displayOneMovie} />
+                <Search handleSearch={this.props.handleChange}/>
+                <MovieCollection allMovies = {this.props.allMovies} handleClick = {this.displayOneMovie} />
 
                 <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} 
                 />

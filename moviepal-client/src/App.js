@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import SearchMoviesContainer from './containers/SearchMoviesContainer'
+import AllMyMoviesContainer from './containers/AllMyMoviesContainer'
 import Settings from './containers/Settings'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import NavBar from './containers/NavBar.js'
@@ -38,7 +38,7 @@ class App extends Component {
           <div>
             <Route path = '/home' render = { props => <Home {...props} userStatus =   {this.state.logged_in} user = {this.state.user} getLoggedIn= {this.getLoggedIn} /> } />
             <Route exact path = '/settings' render = { props => <Settings {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
-            <Route exact path = '/mymovies' render = { props => <SearchMoviesContainer {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
+            <Route exact path = '/mymovies' render = { props => <AllMyMoviesContainer {...props} userStatus =   {this.state.logged_in} user = {this.state.user}/> } />
           </div>
         </Router>
       )
