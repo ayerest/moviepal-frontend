@@ -8,7 +8,8 @@ class Profile extends Component {
         super(props)
         this.state = {
             center: null,
-            theaters: null
+            theaters: null, 
+            loaded: false
         }
         // fetch("http://localhost:3000/maps")
         // .then(response => response.json())
@@ -19,6 +20,7 @@ class Profile extends Component {
         //         api: json.api_key
         //     })
         // })
+
         
             let city = this.props.user.city
             fetch('http://localhost:3000/maps', {
@@ -41,6 +43,12 @@ class Profile extends Component {
                     console.log("error after generating map based on city", error)
                 })
             }
+
+    newMoviesLoaded = () => {
+        this.setState(prevState => {
+            return { loaded: true }
+        })
+    }
 
     getTheaters = (centerPointHash) => {
         fetch('http://localhost:3000/markers', {
@@ -70,7 +78,7 @@ class Profile extends Component {
             <div>
             <div className="flex">
                 <div className="movies">
-                <CurrentMoviesContainer user={this.props.user}/>
+                <CurrentMoviesContainer onLoaded={this.newMoviesLoaded} loaded={this.state.loaded} user={this.props.user}/>
                 </div>
                 <div>
                 <MapContainer user={this.props.user} theaters={this.state.theaters} center={this.state.center}/>
