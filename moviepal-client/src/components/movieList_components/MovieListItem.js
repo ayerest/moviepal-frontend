@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 class MovieListItem extends Component {
     constructor(props) {
         super(props)
+        // debugger
     }
     render() {
         const {movie, handleClick} = this.props
@@ -13,7 +14,11 @@ class MovieListItem extends Component {
             <div className = "ui card"
             key = {movie.id}
             onClick = {()=> handleClick(movie)}>
-                <a>{movie.title}</a>
+                <div className="flex"><a>{movie.title}</a>
+                {!!movie.likes[0].like ? <p>❤️</p> : null}
+                {!!movie.likes[0].unlike ? <p>💩</p> : null}
+                {!!movie.likes[0].to_watch ? <p>🎬</p> : null}
+                </div>
             </div>
         )
 

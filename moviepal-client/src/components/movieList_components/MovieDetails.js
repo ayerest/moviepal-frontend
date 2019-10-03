@@ -49,30 +49,32 @@ class MovieDetails extends Component {
                 {!!genres && genres.length > 0 ?
                 <p>{genres.join(", ")}</p> : null
                 }
-                <button onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
+                {/* <button onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
 
                 {!!this.state.trailer ? 
-                <Trailer trailer={this.state.trailer}></Trailer> : null }
+                <Trailer trailer={this.state.trailer}></Trailer> : null } */}
 
-                <button name = "like" 
+                {/* <button name = "like" 
                 id = {id} 
                 onClick = {this.props.handleOnLike}
                 // (this.props.user.id, this.props.movie.id)
 
-                > ❤️</button>
+                > ❤️</button> */}
 
                 {/* <button name = "unlike" id = {id} onClick = {this.props.handleOnUnLike(this.props.user.id, this.props.movie.id)}> naw </button>
 
                 <button name = "to-watch" id = {id} onClick= {this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)}> ?! </button> */}
 
                 
-                {/* <button onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
+                <button onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
-                {this.props.fromCurrent ? null : <div>
-                <button id = {id} onClick = {this.props.handleOnLike}> ❤️</button>
-                <button name = "unlike" onClick = {this.props.handleOnUnLike}> naw </button>
-                <button name = "to-watch" onClick= {this.props.handleOnToWatch}> ?! </button>
-                </div>  */}
+                {this.props.fromCurrent ? null : 
+                    <div>
+                        <button data-id={id} name="like" onClick = {this.props.handleOnLike}> ❤️</button>
+                        <button data-id={id} name="unlike" onClick = {this.props.handleOnLike}> 💩 </button>
+                        <button data-id={id} name="to-watch" onClick= {this.props.handleOnLike}> 🎬 </button>
+                    </div>
+                }
             
 
 
