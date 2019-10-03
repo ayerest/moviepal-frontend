@@ -24,14 +24,16 @@ constructor (props) {
     this.handleChange = this.handleChange.bind(this)
 }
 
-toggleShow = () => {
-    this.setState(prevState => ({
-      signUpState: !prevState.signUpState
-    }))
-  }
+// toggleShowModal = (e) => {
+//   // console.log(e.target.)
+//     this.setState(prevState => ({
+//       signUpState: !prevState.signUpState
+//     }))
+//   }
   
 
 handleChange = (e) => {
+  // console.log(e.target.value)
     let newVal = e.target.value
     let fieldName = e.target.name
     const newInput = { ...this.state.fields, [fieldName]: newVal}
@@ -76,21 +78,20 @@ handleSubmit = (e) => {
               <div className= "ui field">
                  <form onSubmit = {this.handleSubmit}>
                     <div className = "ui field">
+                      <br></br>
                         <label>Username</label>
                       <input name="username" type="text" required placeholder="Username" value= {fields.username} onChange = {this.handleChange}></input>
                     </div>
+                    <br></br>
                     <div className = "ui field">
                       <label>Password</label>
                       <input name="password" type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
                     </div>
-                    <button type = "submit">Sign In</button>
+                    <br></br>
+                    <button type = "submit" className="btn btn-primary" >Sign In</button>
                   </form> 
                 <div>
-                {/* <button name= "toggleButton"
-                  variant="primary"
-                  onClick={this.toggleShow}
-                  >Don't have an account? Sign Up! 
-                </button> */}
+          
                 {/* {
                   this.state.signUpState ?
                   <ModalContainer onSignIn={this.props.onSignIn} /> : null

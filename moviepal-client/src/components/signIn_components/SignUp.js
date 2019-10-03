@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import ToggleButton from 'react-bootstrap/ToggleButton'
 class SignUp extends Component {
 
     constructor(props){
@@ -10,6 +10,7 @@ class SignUp extends Component {
             username: "",
             password: "",
             city: "",
+            notifications: false
 
             }
         }
@@ -17,8 +18,6 @@ class SignUp extends Component {
     }
       onSubmit (e) {
           e.preventDefault();
-          console.log("userame", e.target.username.value)
-          console.log("city", e.target.city.value)
           fetch("http://localhost:3000/users", {
         method: 'POST',
         headers: {
@@ -31,23 +30,32 @@ class SignUp extends Component {
                     username: e.target.username.value,
                     password_digest: e.target.password.value,
                     city: e.target.city.value,
-
+                    notifications: this.state.notifications
                 })
             
             })
             .then(response => response.json())
             .then(data => {
-                console.log("after sign up form", data)
-                // debugger
-                // this.props.onSignUp(data, "signup") 
+                console.log("after sign up form", data) 
             })
 
     }
-    
         handleChange = (e) => {
+            console.log(e.target.value)
             const newInput = { ...this.state.fields, [e.target.name]: e.target.value}
             this.setState({fields: newInput})
         }
+
+        handleSignUpToggle = (e)=> {
+            console.log(e.target.value)
+            console.log("hitting toggle")
+
+            this.setState({
+                notifications: !e.target.value
+            })
+        }
+
+
 
     render() {
         return (
@@ -56,8 +64,15 @@ class SignUp extends Component {
                 <input ref = "username" type="text" required placeholder="Enter a new username" id = "username" onChange = {this.handleChange}></input>
                 <input ref = "password" type="password" required placeholder="Enter a new password" id = "password" onChange = {this.handleChange}></input>
                 <input ref = "city" type="text" required placeholder="Enter Your City" id = "city" onChange = {this.handleChange}></input>
-                
-                <button type = "Submit">Sign up</button>
+
+                <div class = "btn-group-toggle" data-toggle="buttons">
+                <label>Text Notifications</label>
+                <ToggleButton type = "checkbox" value ={this.props.notifications}
+                onClick = {this.handleSignUpToggle} 
+                ></ToggleButton>
+                </div>
+
+                <button className="btn btn-primary" type = "Submit">Sign up</button>
                 
 
             </form>

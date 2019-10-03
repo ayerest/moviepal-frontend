@@ -43,6 +43,10 @@ class MovieDetails extends Component {
         console.log("what likes I got", likes)
 
         return (
+
+            <div class = "container">
+            <div class = "column">
+            <div class = "row-sm">
             <div className="ui-card">
                 <h2>Title: {title}</h2>
                 <img alt="poster for movie" src={poster_img}></img>
@@ -66,7 +70,7 @@ class MovieDetails extends Component {
                 <button name = "to-watch" id = {id} onClick= {this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)}> ?! </button> */}
 
                 
-                <button onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
+                <github onClick={this.showTrailer} value={trailer_url}>Watch Trailer</github>
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
                 {this.props.fromCurrent ? null : 
                     <div>
@@ -75,6 +79,8 @@ class MovieDetails extends Component {
                         <button data-id={id} name="to-watch" onClick= {this.props.handleOnLike}> 🎬 </button>
                     </div>
                 }
+
+            
             
 
 
@@ -86,6 +92,9 @@ class MovieDetails extends Component {
                 </ul>
                 <p><a rel="noopener noreferrer" target="_blank" href={showtimes}>Click for Showtimes</a></p>
             </div>
+            </div>
+             </div>
+             </div>
         )
     }
 }

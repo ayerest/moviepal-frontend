@@ -13,7 +13,6 @@ class Settings extends Component {
     }
     
     state = {
-        //we only have users genres-must hard code all...?
         genres: {
             action: false, adventure: false, animation: false, biography: false, comedy: false,
             crime: false, documentary: false, drama: false, family: false, fantasy: false,
@@ -27,40 +26,62 @@ class Settings extends Component {
             username: this.props.username,
             city: this.props.city,
             notifications: this.props.notifications
+        },
+
+        editBoxes: {
+            nameChange: "",
+            cityChange: ""
         }
     }
     
     onGenreSubmit = (e) => {
         e.preventDefault()
-        // console.log(this.state.genres)
-    }
+        console.log(this.state.genres)
+        fetch(`http://localhost:3000/genrepreferences/${this.props.user.id}`, {
+            method: 'PATCH',
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: 
+            JSON.stringify({
+                genre_id: e.target.name.value,
+                city: e.target.city.value,
+                notifications: this.state.notifications
+            })
+        
+        })
+}
 
     onGenreChange = (e) => {
-        /////wont' change back to false?!?!
         e.persist()
-        // console.log("before value: ", e.target.value)
+        console.log("before value: ", e.target.value)
         let updatedValue = e.target.value === true? false : true
-        // console.log("updated value: ", updatedValue)
+        console.log("updated value: ", updatedValue)
         // console.log("e.target: ", e.target)
         // console.log("e.target.name: ", e.target)
         // console.log(this.state.genres)
         // console.log(this.state.genres[e.target.value])
-        this.setState(prevState => ({
-            genres: {
-                ...prevState.genres, 
-                [e.target.name] : updatedValue}
-        }))        
+        // this.setState(prevState => ({
+        //     genres: {
+        //         ...prevState.genres, 
+        //         [e.target.name] : updatedValue}
+        // }))        
     }
 
-    handleAlertToggle(checked){
-        this.setState({checked})
+    handleEditToggle = (e)=> {
+        console.log("alert status before toggle", e.target.value)
+        this.setState({
+            notifications: !e.target.value
+        })
+        console.log("this.state.notifications", this.props.notifications)
     }
 
-    onProfileSubmit = (e) => {
+    onSubmitProfile = (e) => {
         e.preventDefault();
-          console.log("userame", e.target.username.value)
-          fetch("http://localhost:3000/users", {
-        method: 'POST',
+          fetch(`http://localhost:3000/users/${this.props.user.id}`, {
+        method: 'PATCH',
         headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -70,7 +91,7 @@ class Settings extends Component {
                 JSON.stringify({
                     name: e.target.name.value,
                     city: e.target.city.value,
-                    notifications: e.target.notifications.value
+                    notifications: this.state.notifications
                 })
             
             })
@@ -79,14 +100,15 @@ class Settings extends Component {
 
 
     render() {
-        console.log(this.state.genres)
+        // console.log(this.state.genres)
 
         return (
             <div>
                 Settings
-                {/* <MovieSettings onGenreChange = {this.onGenreChange} onGenreSubmit = {this.onGenreSubmit} allGenres= {this.state.genres}/> */}
+                <MovieSettings  onGenreSubmit = {this.onGenreSubmit} onGenreChange = {this.onGenreChange} allGenres= {this.state.genres} user = {this.props.user} />
 
-                <ProfileSettings />
+                <ProfileSettings onSubmitProfile= {this.onSubmitProfile} handleEditToggle= {this.handleEditToggle}
+                handleChange = {this.handleChange} user= {this.props.user}/>
 
             </div>
         )

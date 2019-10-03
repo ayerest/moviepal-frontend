@@ -5,6 +5,10 @@ import Settings from './containers/Settings'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import NavBar from './containers/NavBar.js'
 import Home from './containers/Home'
+import Toggle from 'react-bootstrap-toggle'
+// import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 class App extends Component {
   constructor() {

@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -28,7 +30,7 @@
 }
 
 .flex div.movies {
-  background-color: thistle;
+  /* background-color: thistle; */
   margin-top: 1rem;
   width: 40vw;
   height: 95vw;
