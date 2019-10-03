@@ -35,27 +35,59 @@ class Settings extends Component {
     }
     
     onGenreSubmit = (e) => {
-        e.preventDefault()
-        console.log(this.state.genres)
-        fetch(`http://localhost:3000/genrepreferences/${this.props.user.id}`, {
-            method: 'PATCH',
-            headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${localStorage.token}`
-            },
-            body: 
-            JSON.stringify({
-                genre_id: e.target.name.value,
-                city: e.target.city.value,
-                notifications: this.state.notifications
-            })
+        debugger
+        // e.preventDefault()
+
+        // console.log(this.state.genres)
+        // fetch(`http://localhost:3000/users/${this.props.user.id}`, {
+        //     method: 'PATCH',
+        //     headers: {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        //     'Authorization': `Bearer ${localStorage.token}`
+        //     },
+        //     body: 
+        //     JSON.stringify({
+        //         genre_id: e.target.name.value,
+        //         city: e.target.city.value,
+        //         notifications: this.state.notifications
+        //     })
         
-        })
+        // }).then(response => response.json())
+        // .then(data => {
+        //     debugger
+        //     console.log(data)
+        // })
 }
 
     onGenreChange = (e) => {
-        e.persist()
+
+        e.preventDefault()
+        let genre = e.target.name
+        let status = e.target.value
+        // debugger
+        // console.log(this.state.genres)
+        fetch(`http://localhost:3000/genrepreferences`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body:
+                JSON.stringify({
+                    genre: genre,
+                    status: status,
+                    user: `${this.props.user.id}`
+                })
+
+        }).then(response => response.json())
+            .then(data => {
+                // debugger
+                this.props.getUser(data)
+            })
+
+        // e.persist()
         console.log("before value: ", e.target.value)
         let updatedValue = e.target.value === true? false : true
         console.log("updated value: ", updatedValue)
@@ -76,6 +108,7 @@ class Settings extends Component {
             notifications: !e.target.value
         })
         console.log("this.state.notifications", this.props.notifications)
+        this.onGenreChange()
     }
 
     onSubmitProfile = (e) => {

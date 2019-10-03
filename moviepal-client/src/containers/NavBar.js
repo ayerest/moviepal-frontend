@@ -32,7 +32,7 @@ class NavBar extends React.Component {
                                 <Nav className="mr-auto">
                                     <Nav.Link as={Link} to="/home" > Home </Nav.Link>
                             
-                                 <Link className="nav-link" onTouchCancel="/mymovies">
+                                 <Link className="nav-link" to="/mymovies">
                                      My Movies
                                  </Link>
                                  <Link className="nav-link" to="/settings">

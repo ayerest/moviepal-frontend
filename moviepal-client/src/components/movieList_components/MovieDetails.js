@@ -70,7 +70,7 @@ class MovieDetails extends Component {
                 <button name = "to-watch" id = {id} onClick= {this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)}> ?! </button> */}
 
                 
-                <github onClick={this.showTrailer} value={trailer_url}>Watch Trailer</github>
+                <button onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
                 {this.props.fromCurrent ? null : 
                     <div>
