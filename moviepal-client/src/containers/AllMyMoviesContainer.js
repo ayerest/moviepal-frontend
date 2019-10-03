@@ -10,7 +10,11 @@ class AllMyMoviesContainer extends Component {
         this.state = {
             allMovies: [],
         }
+        this.grabAllMovies()
+            
+    }
 
+    grabAllMovies = () => {
         fetch("http://localhost:3000/movies", {
             headers: {
                 'Authorization': `Bearer ${localStorage.token}`
@@ -18,9 +22,9 @@ class AllMyMoviesContainer extends Component {
         })
         .then(response => response.json())
         .then(movieData => {
+            // debugger
             this.renderMovies(movieData)
         })
-            
     }
 
     renderMovies = (movieData) => {
@@ -47,21 +51,7 @@ class AllMyMoviesContainer extends Component {
 
     handleOnLike = (e) => {
         let movieId= e.target.id
-        // console.log("like triggered")
-        // console.log("e.target", eventvar.value)
-        // console.log("e.target", eventvar)
-        // console.log("this.props", this.props)
-
-        // var myMovieId = btn.id
-        // var myLike = "test"
-        // let likeId = btn.name
-        // let movieId = btn.id
-        // let field = btn.name
-        // let myLike = Like.all.find_by(movie_id === likeId)
-        // let myMovie = Movie.all.find_by(movie_id === likeId)
-        // debugger
-
-        let myLike = (fetch(`http://localhost:3000/rottens`, {
+        fetch(`http://localhost:3000/rottens`, {
             method: 'POST',
 
             headers: {
@@ -73,19 +63,13 @@ class AllMyMoviesContainer extends Component {
                 "user_id": this.props.user.id,
                 "movie_id": movieId
             })
-        }))
+        })
         .then(response => response.json())
-        .then(returnthis => console.log(returnthis))
-
-        // //then post to that fetch
-        // fetch(`http://localhost:3000/likes${likeId}`, {
-        // method: 'POST',
-        // headers: {
-        //     'Authorization': `Bearer ${localStorage.token}`
-        // },
-        // body: {}
-        // })
-        // .then(response => response.json())
+        .then(likeData => {
+            // debugger
+            console.log(likeData)
+            this.grabAllMovies()
+        })
     }
 
 
