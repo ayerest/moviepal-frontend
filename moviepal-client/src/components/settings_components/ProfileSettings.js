@@ -17,11 +17,12 @@ class ProfileSettings extends Component {
 
 
                 <label>
-                Weekly text reminders
+                Weekly text reminders?
                 </label>
-                <input type = "checkbox-inline" data-toggle = "toggle" 
+          
+                <input type = "checkbox"
                 defaultValue = {this.props.notifications}
-                onChange = {this.props.handleAlertToggle}
+                onClick = {this.props.handleAlertToggle}
                 ></input>
                 
                 <button class = "btn btn-outline-primary" type = "Submit">Save Changes</button>

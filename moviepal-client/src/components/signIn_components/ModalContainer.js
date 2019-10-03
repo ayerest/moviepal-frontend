@@ -15,9 +15,13 @@ function ModalContainer (props) {
               onClick={handleShow}>
               Don't have an account? Sign Up!
             </Button>
-            <Modal className= "btn btn-primary" fade= {false} show={show} 
+            <Modal 
+            // className= "btn btn-primary" 
+            // fade= {false} 
+            show={show} 
             onHide = {handleClose}>
               <Modal.Header closeButton >
+                Sign Up!
               </Modal.Header>
               <Modal.Body>
 

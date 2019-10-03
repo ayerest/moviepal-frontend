@@ -11,6 +11,7 @@ class MovieDetails extends Component {
     }
 
     showTrailer = (e) => {
+        console.log("trailer triggered")
         let button = e.target
         if (button.innerText === "Watch Trailer") {
             let trailer = e.target.value
@@ -39,8 +40,8 @@ class MovieDetails extends Component {
         //         return like.user_id === this.props.user.id
         //     })
         // }
-
-        console.log("what likes I got", likes)
+       
+        // console.log("what likes I got", likes)
 
         return (
 
@@ -70,7 +71,7 @@ class MovieDetails extends Component {
                 <button name = "to-watch" id = {id} onClick= {this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)}> ?! </button> */}
 
                 
-                <github onClick={this.showTrailer} value={trailer_url}>Watch Trailer</github>
+                <button  className="btn btn-primary" onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
                 {this.props.fromCurrent ? null : 
                     <div>

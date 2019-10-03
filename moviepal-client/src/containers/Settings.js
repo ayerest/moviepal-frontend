@@ -37,8 +37,8 @@ class Settings extends Component {
     onGenreSubmit = (e) => {
         e.preventDefault()
         console.log(this.state.genres)
-        fetch(`http://localhost:3000/genrepreferences/${this.props.user.id}`, {
-            method: 'PATCH',
+        fetch(`http://localhost:3000/preferences/`, {
+            method: 'POST',
             headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -46,9 +46,8 @@ class Settings extends Component {
             },
             body: 
             JSON.stringify({
-                genre_id: e.target.name.value,
-                city: e.target.city.value,
-                notifications: this.state.notifications
+                user_id: this.state.user.id,
+                strength: ""
             })
         
         })

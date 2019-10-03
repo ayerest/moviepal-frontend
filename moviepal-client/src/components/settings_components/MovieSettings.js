@@ -32,12 +32,14 @@ class MovieSettings extends Component {
         return (
             <form onSubmit = {this.props.onGenreSubmit}>
                 {this.displayGenres()}
-                <div class = "btn-group-toggle" data-toggle="buttons">
-                <label>Text Notifications</label>
-                <ToggleButton type = "checkbox" value ={this.props.notifications}
+                {/* <div class = "btn-group-toggle" data-toggle="buttons"> */}
+                {/* <label>Weekly Text Reminders Y/N</label> */}
+                {/* <ToggleButton type = "checkbox" value ={this.props.notifications}
                 onClick = {this.handleEditToggle} 
-                ></ToggleButton>
-                </div>
+                ></ToggleButton> */}
+                 {/* <input type = "checkbox" value ={this.props.notifications}
+                onClick = {this.handleEditToggle}></input> */}
+                {/* </div> */}
 
             </form>
         )

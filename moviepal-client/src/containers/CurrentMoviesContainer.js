@@ -106,11 +106,11 @@ class CurrentMoviesContainer extends Component {
     render() {
         return (
             <div>
-                <button type = "button" class = "btn btn-outline-primary" onClick={this.feelingLucky}>Feeling Lucky...</button>
+                {/* <button type = "button" class = "btn btn-outline-primary" onClick={this.feelingLucky}>Feeling Lucky...</button> */}
 
                 {/* change Iris' code to above button type ^^ */}
-                <button onClick={this.turnOnTwilio}>Send Notification</button>
-                <button onClick={this.feelingLucky}>Feeling Lucky...</button>
+                <button type = "button" class = "btn btn-outline-primary" onClick={this.turnOnTwilio}>Send Notification</button>
+                <button type = "button" class = "btn btn-outline-primary" onClick={this.feelingLucky}>Feeling Lucky...</button>
                 <h2 className="current-movies">Current movies</h2>
                 <p>Genres: {!!this.state.randGenres ? this.state.randGenres.join(", ") : 
                 this.props.user.genres.map(genre => genre.name).join(", ")} </p>
