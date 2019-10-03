@@ -45,8 +45,13 @@ class AllMyMoviesContainer extends Component {
         })
     }
 
-    handleOnLike = (props) => {
-        console.log("like triggered")
+    handleOnLike = (e) => {
+        let movieId= e.target.id
+        // console.log("like triggered")
+        // console.log("e.target", eventvar.value)
+        // console.log("e.target", eventvar)
+        // console.log("this.props", this.props)
+
         // var myMovieId = btn.id
         // var myLike = "test"
         // let likeId = btn.name
@@ -56,18 +61,22 @@ class AllMyMoviesContainer extends Component {
         // let myMovie = Movie.all.find_by(movie_id === likeId)
         // debugger
 
-        // let myLike = (fetch(`http://localhost:3000/rottens`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Authorization': `Bearer ${localStorage.token}`
-        //     },
-        //     body: JSON.stringify({
-        //         user_id: this.props.user.id,
-        //         movie_id: this.props.movie.id
-        //     })
-        // })
-        // .then(response => response.json()))
-        
+        let myLike = (fetch(`http://localhost:3000/rottens`, {
+            method: 'POST',
+
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                "user_id": this.props.user.id,
+                "movie_id": movieId
+            })
+        }))
+        .then(response => response.json())
+        .then(returnthis => console.log(returnthis))
+
         // //then post to that fetch
         // fetch(`http://localhost:3000/likes${likeId}`, {
         // method: 'POST',
@@ -122,6 +131,8 @@ class AllMyMoviesContainer extends Component {
                     // handleOnDisLike = {this.handleOnDisLike} 
                     // handleOnToSee = {this.handleOnToSee} 
                     /> : null }
+
+                    {/* {this.state.allMovies.length > 0 ? <List user={this.props.user} handleChange= {this.handleChange}  search = {this.state.search} allMovies = {this.state.allMovies} handleOnLike = {this.handleOnLike} handleOnUnLike = {this.handleOnUnLike} handleOnToWatch = {this.handleOnToWatch} /> : null } */}
                 </div>
         )
     }

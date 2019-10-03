@@ -60,6 +60,8 @@ class List extends React.Component {
                 // handleOnToWatch={this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)} 
                 user={this.props.user}
                 /> : null } 
+                
+                {/* {!!this.state.movie ? <MovieDetails movie={this.state.movie} handleOnLike={this.props.handleOnLike} handleOnUnLike={this.props.handleOnUnLike} handleOnToWatch={this.props.handleOnToWatch} user={this.props.user} fromCurrent={false}/> : null }  */}
             </div>
         )}
 
