@@ -9,12 +9,13 @@ function ModalContainer (props) {
 
         return(
           <div>
+            <br></br>
             <Button className="btn btn-primary" name="toggleButton"
-              variant="primary"
+              // variant="link"
               onClick={handleShow}>
               Don't have an account? Sign Up!
             </Button>
-            <Modal style ={{opacity:1}} fade= {false} show={show} 
+            <Modal className= "btn btn-primary" fade= {false} show={show} 
             onHide = {handleClose}>
               <Modal.Header closeButton >
               </Modal.Header>
@@ -24,12 +25,12 @@ function ModalContainer (props) {
               
               </Modal.Body>
               <Modal.Footer>
-                <Button onClick = {handleClose}>
+                {/* <Button onClick = {handleClose} className="btn btn-primary">
                   Close
-                </Button>
-                <Button onClick = {handleClose}>
+                </Button> */}
+                {/* <Button onClick = {handleClose} className="btn btn-primary">
                 Create username
-                </Button>
+                </Button> */}
               </Modal.Footer>
             </Modal>
           </div>

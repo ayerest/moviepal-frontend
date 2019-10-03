@@ -37,7 +37,22 @@ class Settings extends Component {
     onGenreSubmit = (e) => {
         e.preventDefault()
         console.log(this.state.genres)
-    }
+        fetch(`http://localhost:3000/genrepreferences/${this.props.user.id}`, {
+            method: 'PATCH',
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: 
+            JSON.stringify({
+                genre_id: e.target.name.value,
+                city: e.target.city.value,
+                notifications: this.state.notifications
+            })
+        
+        })
+}
 
     onGenreChange = (e) => {
         e.persist()
@@ -55,10 +70,10 @@ class Settings extends Component {
         // }))        
     }
 
-    handleAlertToggle = (e)=> {
+    handleEditToggle = (e)=> {
         console.log("alert status before toggle", e.target.value)
         this.setState({
-            notifications: !e.target.checked
+            notifications: !e.target.value
         })
         console.log("this.state.notifications", this.props.notifications)
     }
@@ -90,9 +105,9 @@ class Settings extends Component {
         return (
             <div>
                 Settings
-                {/* <MovieSettings onGenreChange = {this.onGenreChange} onGenreSubmit = {this.onGenreSubmit} allGenres= {this.state.genres}/> */}
+                <MovieSettings  onGenreSubmit = {this.onGenreSubmit} onGenreChange = {this.onGenreChange} allGenres= {this.state.genres} user = {this.props.user} />
 
-                <ProfileSettings onSubmitProfile= {this.onSubmitProfile} handleAlertToggle= {this.handleAlertToggle}
+                <ProfileSettings onSubmitProfile= {this.onSubmitProfile} handleEditToggle= {this.handleEditToggle}
                 handleChange = {this.handleChange} user= {this.props.user}/>
 
             </div>

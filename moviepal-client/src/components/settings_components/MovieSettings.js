@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import ToggleButton from 'react-bootstrap/ToggleButton'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 
 class MovieSettings extends Component {
@@ -8,24 +11,34 @@ class MovieSettings extends Component {
 
     displayGenres () {
         return(
+  <Row>{
         Object.keys(this.props.allGenres).map(genre => {
-            return(       
-                <div>
+            return( 
+                <Col xs="12" sm ="4">   
             <label id = {genre}>
             {genre}</label>
             <input type = "checkbox" name = {genre} onChange = {this.props.onGenreChange}
             />
-            </div>
+            </Col> 
             )
-        }
-        ))
+        })
+    }</Row>
+    
+ 
+        )
     }
 
     render() {
         return (
             <form onSubmit = {this.props.onGenreSubmit}>
                 {this.displayGenres()}
-            <input type= "submit" value = "Save genre preferences" />
+                <div class = "btn-group-toggle" data-toggle="buttons">
+                <label>Text Notifications</label>
+                <ToggleButton type = "checkbox" value ={this.props.notifications}
+                onClick = {this.handleEditToggle} 
+                ></ToggleButton>
+                </div>
+
             </form>
         )
     }

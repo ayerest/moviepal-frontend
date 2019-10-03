@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import Switch from '@material-ui/core/Switch'
-
+import ToggleButton from 'react-bootstrap/ToggleButton'
 class SignUp extends Component {
 
     constructor(props){
@@ -42,13 +41,17 @@ class SignUp extends Component {
 
     }
         handleChange = (e) => {
+            console.log(e.target.value)
             const newInput = { ...this.state.fields, [e.target.name]: e.target.value}
             this.setState({fields: newInput})
         }
 
-        handleToggle = (e)=> {
+        handleSignUpToggle = (e)=> {
+            console.log(e.target.value)
+            console.log("hitting toggle")
+
             this.setState({
-                notifications: !e.target.checked
+                notifications: !e.target.value
             })
         }
 
@@ -61,13 +64,15 @@ class SignUp extends Component {
                 <input ref = "username" type="text" required placeholder="Enter a new username" id = "username" onChange = {this.handleChange}></input>
                 <input ref = "password" type="password" required placeholder="Enter a new password" id = "password" onChange = {this.handleChange}></input>
                 <input ref = "city" type="text" required placeholder="Enter Your City" id = "city" onChange = {this.handleChange}></input>
-                <Switch 
-                id= "checked"
-                checked = {this.state.checked}
-                onChange = {this.handleToggle}
-                value = {this.state.checked} 
-                ></Switch>
-                <button type = "Submit">Sign up</button>
+
+                <div class = "btn-group-toggle" data-toggle="buttons">
+                <label>Text Notifications</label>
+                <ToggleButton type = "checkbox" value ={this.props.notifications}
+                onClick = {this.handleSignUpToggle} 
+                ></ToggleButton>
+                </div>
+
+                <button className="btn btn-primary" type = "Submit">Sign up</button>
                 
 
             </form>

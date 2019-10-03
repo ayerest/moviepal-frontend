@@ -65,8 +65,7 @@ class CurrentMoviesContainer extends Component {
     }
 
     displayCurrentMovies = () => {
-        //function to display movie on page
-        //need to figure out where this should live though
+        
         if (this.state.currentMovies.length > 0) {
             return this.state.currentMovies.map((movie, index) => {
                 return <MovieDetails user={this.props.user} movie={movie} key={index} fromCurrent={true} handleOnLike={this.props.handleOnLike} />
@@ -74,8 +73,10 @@ class CurrentMoviesContainer extends Component {
         } else {
             return null
         }
-        
-    }
+            
+   
+            
+}
 
     feelingLucky = () => {
         let allgenres = ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir", "History", "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Sport", "Superhero", "Thriller", "War", "Western"]
@@ -100,9 +101,11 @@ class CurrentMoviesContainer extends Component {
         return (
             <div>
                 {/* <button onClick={this.turnOnTwilio}>Send Notification</button> */}
-                <button onClick={this.feelingLucky}>Feeling Lucky...</button>
+                <button type = "button" class = "btn btn-outline-primary" onClick={this.feelingLucky}>Feeling Lucky...</button>
                 <h2 className="current-movies">Current movies</h2>
-                <p>Genres: {!!this.state.randGenres ? this.state.randGenres.join(", ") : this.props.user.genres.map(genre => genre.name).join(", ")} </p>
+                <p>Genres: {!!this.state.randGenres ? this.state.randGenres.join(", ") : 
+                this.props.user.genres.map(genre => genre.name).join(", ")} </p>
+                <br></br>
                 {this.displayCurrentMovies()}
             </div>
         )

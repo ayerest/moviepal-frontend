@@ -9,12 +9,12 @@
     "google-maps-react": "^2.0.2",
     "react": "^16.10.1",
     "react-bootstrap": "^1.0.0-beta.12",
+    "react-bootstrap-toggle": "^2.3.2",
     "react-dom": "^16.10.1",
     "react-modal": "^3.10.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
-    "react-switch": "^5.0.1",
-    "semantic-ui-react": "^0.88.1"
+    "react-switch": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -11,22 +11,20 @@ class ProfileSettings extends Component {
         
         return (
             <form onSubmit = {this.props.onSubmitProfile}>
-                <input ref = "name" type="text" required defaultValue= {this.props.user.name} id = "name" onChange = {this.props.handleChange}></input>
+                <input ref = "name" type="text" required defaultValue= {this.props.user.name} id = "name" key = "name" onChange = {this.props.handleChange}></input>
 
-                <input ref = "city" type="text" required defaultValue= {this.props.user.city} id = "city" onChange = {this.props.handleChange}></input>
+                <input ref = "city" type="text" required defaultValue= {this.props.user.city} id = "city" key = "city" onChange = {this.props.handleChange}></input>
 
 
                 <label>
-                Weekly text reminders On/Off
+                Weekly text reminders
                 </label>
-                <Switch 
+                <input type = "checkbox-inline" data-toggle = "toggle" 
                 defaultValue = {this.props.notifications}
-                checked = {this.props.checked}
                 onChange = {this.props.handleAlertToggle}
-                value = {this.props.checked} 
-                ></Switch>
+                ></input>
                 
-                <button type = "Submit">Save Changes</button>
+                <button class = "btn btn-outline-primary" type = "Submit">Save Changes</button>
                 
 
             </form>
