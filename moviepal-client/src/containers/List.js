@@ -30,11 +30,11 @@ class List extends React.Component {
 
 
     render(){
-        if (this.props.allMovies.length > 0) {
-            let allMovies = this.props.allMovies.filter((movie) => {
-                return movie.title.indexOf(this.props.search) !== -1;
-            })
-        }
+        // if (this.props.allMovies.length > 0) {
+        //     let allMovies = this.props.allMovies.filter((movie) => {
+        //         return movie.title.indexOf(this.props.search) !== -1;
+        //     })
+        // }
         return(
             <div>
                 <Search onHandleSearch={this.handleSearch}/>
@@ -50,16 +50,16 @@ class List extends React.Component {
                 <MovieDetails displayOneMovie = {this.displayOneMovie} handleClick = {this.props.handleClick} movie= {this.state.movie} handleOnLike = {this.props.handleOnLike} handleOnDisLike = {this.props.handleOnDisLike} handleOnToSee = {this.props.handleOnToSee}> 
                     */}
                 {!!this.state.movie ? 
-                <MovieDetails movie={this.state.movie} 
-                
-                handleOnLike={this.props.handleOnLike
-                } 
-                // (this.props.user.id, this.props.movie.id)
+                <MovieDetails key={this.state.movie.id} movie={this.state.movie} 
+                handleOnLike={this.props.handleOnLike}
+                user={this.props.user} fromCurrent={false}
+                 /> : null }
+                {/* // (this.props.user.id, this.props.movie.id)
                 // } 
                 // handleOnUnLike={this.props.handleOnUnLike(this.props.user.id, this.props.movie.id)} 
                 // handleOnToWatch={this.props.handleOnToWatch(this.props.user.id, this.props.movie.id)} 
-                user={this.props.user}
-                /> : null } 
+                { user={this.props.user}
+                /> : null }   */}
                 
                 {/* {!!this.state.movie ? <MovieDetails movie={this.state.movie} handleOnLike={this.props.handleOnLike} handleOnUnLike={this.props.handleOnUnLike} handleOnToWatch={this.props.handleOnToWatch} user={this.props.user} fromCurrent={false}/> : null }  */}
             </div>
