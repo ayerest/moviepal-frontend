@@ -57,11 +57,14 @@ class Profile extends Component {
         .then(data => {
             this.setState(prevState => {
                 return { theaters: data }
-            }, () => console.log("after getting theaters", this.state.theaters))
-        }).catch(error => {
-            console.log("error from theaters", error)
-        })
-        }
+            })
+            // () => console.log("after getting theaters", this.state.theaters))})
+        
+        // .catch(error => {
+        //     console.log("error from theaters", error)})
+        
+            })
+    }
 
 
         

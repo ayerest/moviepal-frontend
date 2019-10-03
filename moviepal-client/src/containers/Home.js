@@ -7,7 +7,7 @@ import SignIn from '../components/signIn_components/SignIn'
 class Home extends React.Component {
     constructor(props){
         super(props)
-        console.log(props)
+        // console.log(props)
     }
 
     render(){

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Switch from '@material-ui/core/Switch'
 
 class SignUp extends Component {
 
@@ -10,6 +11,7 @@ class SignUp extends Component {
             username: "",
             password: "",
             city: "",
+            notifications: false
 
             }
         }
@@ -17,8 +19,6 @@ class SignUp extends Component {
     }
       onSubmit (e) {
           e.preventDefault();
-          console.log("userame", e.target.username.value)
-          console.log("city", e.target.city.value)
           fetch("http://localhost:3000/users", {
         method: 'POST',
         headers: {
@@ -31,23 +31,28 @@ class SignUp extends Component {
                     username: e.target.username.value,
                     password_digest: e.target.password.value,
                     city: e.target.city.value,
-
+                    notifications: this.state.notifications
                 })
             
             })
             .then(response => response.json())
             .then(data => {
-                console.log("after sign up form", data)
-                // debugger
-                // this.props.onSignUp(data, "signup") 
+                console.log("after sign up form", data) 
             })
 
     }
-    
         handleChange = (e) => {
             const newInput = { ...this.state.fields, [e.target.name]: e.target.value}
             this.setState({fields: newInput})
         }
+
+        handleToggle = (e)=> {
+            this.setState({
+                notifications: !e.target.checked
+            })
+        }
+
+
 
     render() {
         return (
@@ -56,7 +61,12 @@ class SignUp extends Component {
                 <input ref = "username" type="text" required placeholder="Enter a new username" id = "username" onChange = {this.handleChange}></input>
                 <input ref = "password" type="password" required placeholder="Enter a new password" id = "password" onChange = {this.handleChange}></input>
                 <input ref = "city" type="text" required placeholder="Enter Your City" id = "city" onChange = {this.handleChange}></input>
-                
+                <Switch 
+                id= "checked"
+                checked = {this.state.checked}
+                onChange = {this.handleToggle}
+                value = {this.state.checked} 
+                ></Switch>
                 <button type = "Submit">Sign up</button>
                 
 
