@@ -1,17 +1,20 @@
-// import React from 'react'
+import React from 'react'
 // import { Redirect } from 'react-router-dom'
+import Loader from './Loader'
 
-// const LoaderHOC = WrappedComponent => {
-//     return class LoaderHOC extends React.Component {
+const LoaderHOC = WrappedComponent => {
+    return class LoaderHOC extends React.Component {
+        
+        isLoaded = () => {
+            // debugger
+            return this.props.loaded;
+        }
 
-//         isLoading = () => {
-//             return this.props.allMovies.length === 0;
-//         }
+        render() {
+        
+            return this.isLoaded() ? <WrappedComponent {...this.props} />: <Loader />  
+        }
+    }
+}
 
-//         render() {
-//             return this.isLoading() ? <WrappedComponent  /> : <Redirect to="/home" />
-//         }
-//     }
-// }
-
-// export default LoaderHOC
+export default LoaderHOC

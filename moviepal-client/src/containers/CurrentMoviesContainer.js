@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import MovieDetails from '../components/movieList_components/MovieDetails'
 // import MovieListItem from '../components/movieList_components/MovieListItem'
+// import LoaderHOC from '../HOC/LoaderHOC'
+
 
 class CurrentMoviesContainer extends Component {
     
@@ -40,7 +42,10 @@ class CurrentMoviesContainer extends Component {
     }
 
     turnOnTwilio = () => {
-        fetch('http://localhost:3000/preferences', {
+        console.log("wait it's all happening")
+        setTimeout(
+            () =>
+        fetch('http://localhost:3000/notifications', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -48,21 +53,21 @@ class CurrentMoviesContainer extends Component {
                 'Authorization': `Bearer ${localStorage.token}`
             },
             body: JSON.stringify({
-                // movies: this.state.currentMovies,
+                movies: this.state.currentMovies,
                 user: this.props.user
             })
         })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log("fetch notifications", data)
-        // })
+        .then(response => response.json())
+        .then(data => {
+            console.log("fetch notifications", data)
+        }), 60000)
     }
 
     updateCurrentMovies = (newCurrentMovies) => {
         // console.log("new current", newCurrentMovies)
         this.setState(prevState => {
             return {currentMovies: newCurrentMovies}
-        }, () => console.log("yeah boy"))
+        }, this.props.onLoaded())
     }
 
     displayCurrentMovies = () => {
@@ -116,4 +121,4 @@ class CurrentMoviesContainer extends Component {
     }
 }
 
-export default CurrentMoviesContainer 
+export default (CurrentMoviesContainer)
