@@ -12,7 +12,7 @@ const LoaderHOC = WrappedComponent => {
 
         render() {
         
-            return this.isLoaded() ? <WrappedComponent {...this.props} />: <Loader />  
+            return (this.isLoaded() ? <WrappedComponent {...this.props} /> : <Loader />) 
         }
     }
 }

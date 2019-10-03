@@ -10,6 +10,7 @@ class MovieSettings extends Component {
     }
 
     displayGenres () {
+        let user = this.props.user
         return(
   <Row>{
         Object.keys(this.props.allGenres).map(genre => {
@@ -18,7 +19,7 @@ class MovieSettings extends Component {
             <label id = {genre}>
             {genre}</label>
             <input type = "checkbox" name = {genre} onChange = {this.props.onGenreChange}
-            />
+             />
             </Col> 
             )
         })
@@ -30,7 +31,7 @@ class MovieSettings extends Component {
 
     render() {
         return (
-            <form onSubmit = {this.props.onGenreSubmit}>
+            <form>
                 {this.displayGenres()}
                 {/* <div class = "btn-group-toggle" data-toggle="buttons"> */}
                 {/* <label>Weekly Text Reminders Y/N</label> */}
@@ -41,6 +42,12 @@ class MovieSettings extends Component {
                 onClick = {this.handleEditToggle}></input> */}
                 {/* </div> */}
 
+                <div class = "btn-group-toggle" data-toggle="buttons">
+                <label>Text Notifications</label>
+                <ToggleButton type = "checkbox" value ={this.props.notifications}
+                onClick = {this.props.onGenreSubmit} 
+                >Turn On Notifications</ToggleButton>
+                </div>
             </form>
         )
     }

@@ -72,6 +72,7 @@ class MovieDetails extends Component {
 
                 
                 <button  className="btn btn-primary" onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button>
+                {/* <button onClick={this.showTrailer} value={trailer_url}>Watch Trailer</button> */}
                 {!!this.state.trailer ? <Trailer trailer={this.state.trailer}></Trailer> : null }
                 {this.props.fromCurrent ? null : 
                     <div>

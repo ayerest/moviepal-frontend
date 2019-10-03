@@ -34,6 +34,19 @@ class App extends Component {
     })
   }
 
+  getUser = () => {
+    fetch(`http://localhost:3000/users/${this.state.user.id}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState(prevState => {
+        return {
+          logged_in: true,
+          user: data
+        }
+      })
+    })
+  }
+
   logOut = () => {
     localStorage.removeItem("token")
     this.setState(prevState => {
@@ -51,7 +64,7 @@ class App extends Component {
           <NavBar user={this.state.user} loggedIn={this.state.logged_in} onLogOut={this.logOut}/>
           <div>
             <Route path = '/home' render = { props => <Home {...props} logged_in =   {this.state.logged_in} user = {this.state.user} getLoggedIn= {this.getLoggedIn} /> } />
-            <Route exact path = '/settings' render = { props => <Settings {...props} logged_in =   {this.state.logged_in} user = {this.state.user}/> } />
+            <Route exact path = '/settings' render = { props => <Settings {...props} logged_in =   {this.state.logged_in} user = {this.state.user} onChange={this.getUser}/> } />
             <Route exact path = '/mymovies' render = { props => <AllMyMoviesContainer {...props} logged_in =   {this.state.logged_in} user = {this.state.user}/> } />
           </div>
         </Router>

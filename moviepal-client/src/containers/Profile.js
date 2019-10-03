@@ -45,9 +45,9 @@ class Profile extends Component {
             }
 
     newMoviesLoaded = () => {
-        this.setState(prevState => {
-            return { loaded: true }
-        })
+        // debugger
+        this.setState({loaded: true})
+        console.log("is loaded", this.state.loaded)
     }
 
     getTheaters = (centerPointHash) => {

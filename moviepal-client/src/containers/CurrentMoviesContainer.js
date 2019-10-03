@@ -37,6 +37,8 @@ class CurrentMoviesContainer extends Component {
             })
         }).then(response => response.json())
             .then(data => {
+                // console.log("current movies getting called", data)
+                // debugger
                 this.updateCurrentMovies(data)
             })
     }
@@ -64,10 +66,13 @@ class CurrentMoviesContainer extends Component {
     }
 
     updateCurrentMovies = (newCurrentMovies) => {
-        // console.log("new current", newCurrentMovies)
+        console.log("new current", newCurrentMovies)
+        
         this.setState(prevState => {
             return {currentMovies: newCurrentMovies}
-        }, this.props.onLoaded())
+        })
+        console.log("checking state", this.state)
+        this.props.onLoaded()
     }
 
     displayCurrentMovies = () => {
@@ -111,6 +116,8 @@ class CurrentMoviesContainer extends Component {
                 {/* change Iris' code to above button type ^^ */}
                 <button type = "button" class = "btn btn-outline-primary" onClick={this.turnOnTwilio}>Send Notification</button>
                 <button type = "button" class = "btn btn-outline-primary" onClick={this.feelingLucky}>Feeling Lucky...</button>
+                {/* <button onClick={this.turnOnTwilio}>Send Notification</button>
+                <button onClick={this.feelingLucky}>Feeling Lucky...</button> */}
                 <h2 className="current-movies">Current movies</h2>
                 <p>Genres: {!!this.state.randGenres ? this.state.randGenres.join(", ") : 
                 this.props.user.genres.map(genre => genre.name).join(", ")} </p>
