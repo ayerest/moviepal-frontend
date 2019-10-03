@@ -40,7 +40,7 @@ class CurrentMoviesContainer extends Component {
     }
 
     turnOnTwilio = () => {
-        fetch('http://localhost:3000/notifications', {
+        fetch('http://localhost:3000/preferences', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -48,13 +48,14 @@ class CurrentMoviesContainer extends Component {
                 'Authorization': `Bearer ${localStorage.token}`
             },
             body: JSON.stringify({
-                movies: this.state.currentMovies,
+                // movies: this.state.currentMovies,
                 user: this.props.user
             })
-        }).then(response => response.json())
-        .then(data => {
-            console.log("fetch notifications", data)
         })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log("fetch notifications", data)
+        // })
     }
 
     updateCurrentMovies = (newCurrentMovies) => {
@@ -99,7 +100,7 @@ class CurrentMoviesContainer extends Component {
     render() {
         return (
             <div>
-                {/* <button onClick={this.turnOnTwilio}>Send Notification</button> */}
+                <button onClick={this.turnOnTwilio}>Send Notification</button>
                 <button onClick={this.feelingLucky}>Feeling Lucky...</button>
                 <h2 className="current-movies">Current movies</h2>
                 <p>Genres: {!!this.state.randGenres ? this.state.randGenres.join(", ") : this.props.user.genres.map(genre => genre.name).join(", ")} </p>

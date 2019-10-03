@@ -34,11 +34,11 @@ class MovieDetails extends Component {
     render() {
         let { title, summary, rating, poster_img, runtime, stars, trailer_url, showtimes, genres, likes, id } = this.props.movie
         // debugger
-        if (!!likes && likes.length > 0) {
-            likes = likes.filter(like => {
-                return like.user_id === this.props.user.id
-            })
-        }
+        // if (!!likes && likes.length > 0) {
+        //     likes = likes.filter(like => {
+        //         return like.user_id === this.props.user.id
+        //     })
+        // }
 
         console.log("what likes I got", likes)
 
