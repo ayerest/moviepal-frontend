@@ -16,6 +16,8 @@ class MovieListItem extends Component {
             onClick = {()=> handleClick(movie)}>
                 <div className="flex"><a>{movie.title}</a>
                 {!!movie.likes[0].like ? <p>❤️</p> : null}
+                {!!movie.likes[0].unlike ? <p>💩</p> : null}
+                {!!movie.likes[0].to_watch ? <p>🎬</p> : null}
                 </div>
             </div>
         )

@@ -50,7 +50,9 @@ class AllMyMoviesContainer extends Component {
     }
 
     handleOnLike = (e) => {
-        let movieId= e.target.id
+        // debugger
+        let type = e.target.name
+        let movieId = e.target.attributes["data-id"].value
         fetch(`http://localhost:3000/rottens`, {
             method: 'POST',
 
@@ -61,7 +63,8 @@ class AllMyMoviesContainer extends Component {
             },
             body: JSON.stringify({
                 "user_id": this.props.user.id,
-                "movie_id": movieId
+                "movie_id": movieId,
+                "type": type
             })
         })
         .then(response => response.json())
