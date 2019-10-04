@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ToggleButton from 'react-bootstrap/ToggleButton'
+import {Redirect} from 'react-router-dom'
 class SignUp extends Component {
 
     constructor(props){
@@ -12,7 +13,8 @@ class SignUp extends Component {
             city: "",
             notifications: false
 
-            }
+            },
+            signedUp: false
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
@@ -37,22 +39,23 @@ class SignUp extends Component {
             .then(response => response.json())
             .then(data => {
                 console.log("after sign up form", data) 
+                this.setState(prevState => {
+                    return {signedUp: true}
+                })
             })
+        }
 
-    }
         handleChange = (e) => {
-            console.log(e.target.value)
             const newInput = { ...this.state.fields, [e.target.name]: e.target.value}
             this.setState({fields: newInput})
         }
 
         handleSignUpToggle = (e)=> {
-            console.log(e.target.value)
             console.log("hitting toggle")
 
-            this.setState({
-                notifications: !e.target.value
-            })
+            this.setState(prevState => {
+                return {notifications: !prevState.notifications}
+            }, () => console.log(this.state.notifications))
         }
 
 
@@ -65,19 +68,15 @@ class SignUp extends Component {
                 <input ref = "password" type="password" required placeholder="Enter a new password" id = "password" onChange = {this.handleChange}></input>
                 <input ref = "city" type="text" required placeholder="Enter Your City" id = "city" onChange = {this.handleChange}></input>
 
-                <div class = "btn-group-toggle" data-toggle="buttons">
-                <label>Text Notifications</label>
-                <ToggleButton type = "checkbox" value ={this.props.notifications}
-                onClick = {this.handleSignUpToggle} 
-                ></ToggleButton>
+                <div className = "ui toggle checkbox">
+                    <input type="checkbox" onClick = {this.handleSignUpToggle}></input>
+                    <label>Turn on SMS Notifications</label>
                 </div>
 
                 <button className="btn btn-primary" type = "Submit">Sign up</button>
-                
-
             </form>
-        )
+            )
+        }
     }
-}
-
+    
 export default SignUp

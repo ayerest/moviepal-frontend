@@ -6,7 +6,6 @@ import MovieDetails from '../components/movieList_components/MovieDetails'
 
 class CurrentMoviesContainer extends Component {
     
-    // props: movieSearch, user
     constructor(props) {
         super(props)
         this.state = {
@@ -14,17 +13,10 @@ class CurrentMoviesContainer extends Component {
             randGenres: null
         }
         let genres = this.props.user.genres.map(genre => genre.name)
-
         this.grabMoviesFromIMDB(genres)
-        
     }
 
     grabMoviesFromIMDB = (genres) => {
-        //the genres should come from the user's preferences - probably stored as a prop
-        // passed up from settings component to be stored in state in app and then passed down
-        // console.log("are genres here?", this.props)
-        // debugger
-        // console.log("user needs genres", genres)
         fetch('http://localhost:3000/tomatoes', {
             method: 'POST',
             headers: {
@@ -37,46 +29,40 @@ class CurrentMoviesContainer extends Component {
             })
         }).then(response => response.json())
             .then(data => {
-                // console.log("current movies getting called", data)
-                // debugger
                 this.updateCurrentMovies(data)
             })
     }
 
     turnOnTwilio = () => {
-        console.log("wait it's all happening")
-        setTimeout(
-            () =>
-        fetch('http://localhost:3000/notifications', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                'Authorization': `Bearer ${localStorage.token}`
-            },
-            body: JSON.stringify({
-                movies: this.state.currentMovies,
-                user: this.props.user
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("fetch notifications", data)
-        }), 60000)
+    //     setTimeout(
+    //         () =>
+    //     fetch('http://localhost:3000/notifications', {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json",
+    //             'Authorization': `Bearer ${localStorage.token}`
+    //         },
+    //         body: JSON.stringify({
+    //             movies: this.state.currentMovies,
+    //             user: this.props.user
+    //         })
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log("fetch notifications", data)
+    //     }), 60000)
     }
 
     updateCurrentMovies = (newCurrentMovies) => {
-        console.log("new current", newCurrentMovies)
-        
         this.setState(prevState => {
             return {currentMovies: newCurrentMovies}
+        }, () => {
+            this.props.onLoaded()
         })
-        console.log("checking state", this.state)
-        this.props.onLoaded()
     }
 
     displayCurrentMovies = () => {
-        
         if (this.state.currentMovies.length > 0) {
             return this.state.currentMovies.map((movie, index) => {
                 return <MovieDetails user={this.props.user} movie={movie} key={index} fromCurrent={true} handleOnLike={this.props.handleOnLike} />
@@ -84,10 +70,7 @@ class CurrentMoviesContainer extends Component {
         } else {
             return null
         }
-            
-   
-            
-}
+    }
 
     feelingLucky = () => {
         let allgenres = ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir", "History", "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Sport", "Superhero", "Thriller", "War", "Western"]
@@ -111,7 +94,7 @@ class CurrentMoviesContainer extends Component {
     render() {
         return (
             <div>
-                <button type = "button" class = "btn btn-outline-primary" onClick={this.feelingLucky}>Feeling Lucky...</button>
+                <button type = "button" className = "btn btn-outline-primary" onClick={this.feelingLucky}>Feeling Lucky...</button>
 
                 {/* change Iris' code to above button type ^^ */}
                 <button onClick={this.turnOnTwilio}>Send Notification</button>
@@ -126,4 +109,4 @@ class CurrentMoviesContainer extends Component {
     }
 }
 
-export default (CurrentMoviesContainer)
+export default CurrentMoviesContainer

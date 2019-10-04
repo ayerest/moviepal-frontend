@@ -1,6 +1,6 @@
 import React, {Component, Button} from 'react'
 import ModalContainer from './ModalContainer'
-import Modal from 'react-bootstrap/Modal'
+// import Modal from 'react-bootstrap/Modal'
 
 
 class SignIn extends Component {
@@ -96,7 +96,7 @@ handleSubmit = (e) => {
                   this.state.signUpState ?
                   <ModalContainer onSignIn={this.props.onSignIn} /> : null
                 } */}
-                <ModalContainer />
+                <ModalContainer onSignIn={this.props.onSignIn}/>
 
                 </div>
                 

@@ -9,7 +9,7 @@ class Settings extends Component {
     
     constructor(props) {
         super(props)
-        // debugger
+        debugger
     }
     
     state = {
@@ -61,7 +61,6 @@ class Settings extends Component {
 }
 
     onGenreChange = (e) => {
-
         e.preventDefault()
         let genre = e.target.name
         let status = e.target.value
@@ -133,19 +132,14 @@ class Settings extends Component {
 
 
     render() {
-        // console.log(this.state.genres)
-
         return (
             <div>
-                Settings
+                <h2>My Settings</h2>
                 <MovieSettings  onGenreSubmit = {this.onGenreSubmit} onGenreChange = {this.onGenreChange} allGenres= {this.state.genres} user = {this.props.user} />
-
                 <ProfileSettings onSubmitProfile= {this.onSubmitProfile} handleEditToggle= {this.handleEditToggle}
                 handleChange = {this.handleChange} user= {this.props.user}/>
-
             </div>
         )
-        
     }
 }
 
