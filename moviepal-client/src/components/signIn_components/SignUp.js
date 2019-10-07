@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ToggleButton from 'react-bootstrap/ToggleButton'
+import {Redirect} from 'react-router-dom'
 class SignUp extends Component {
 
     constructor(props){
@@ -13,6 +14,7 @@ class SignUp extends Component {
             notifications: false
 
             },
+            signedUp: false
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
@@ -37,34 +39,23 @@ class SignUp extends Component {
             .then(response => response.json())
             .then(data => {
                 console.log("after sign up form", data) 
+                this.setState(prevState => {
+                    return {signedUp: true}
+                })
             })
+        }
 
-    }
         handleChange = (e) => {
-            console.log(e.target.value)
             const newInput = { ...this.state.fields, [e.target.name]: e.target.value}
             this.setState({fields: newInput})
         }
 
         handleSignUpToggle = (e)=> {
-        //     console.log("target value", e.target.value)
-        //     // console.log("hitting toggle")
-        //     console.log("this state's notifications", this.state.notifications)
-        //     this.setState({
-        //         notifications: !this.state.notifications
-        //     })
-        // }
+            console.log("hitting toggle")
 
-        // handleSignUpToggle = (e) => {
-        // this.setState({
-        //     notifications: !this.notifications
-        // })
-            console.log("target value", e.target.value)
-            // console.log("hitting toggle")
-            console.log("this state's notifications", this.state.notifications)
-            this.setState({
-                notifications: !this.state.notifications
-            })
+            this.setState(prevState => {
+                return {notifications: !prevState.notifications}
+            }, () => console.log(this.state.notifications))
         }
 
 
@@ -84,36 +75,15 @@ class SignUp extends Component {
                 <label>City</label>
                 <input ref = "city" type="text" required placeholder="Enter Your City" id = "city" onChange = {this.handleChange}></input>
 
-                {/* <div class = "btn-group-toggle" data-toggle="buttons">
-                <label>Text Notifications</label>
-                <ToggleButton type = "checkbox" value ={this.state.notifications}
-                onClick = {this.handleSignUpToggle} 
-                ></ToggleButton>
-                </div> */}
-                <br></br>
-                <label>Text Notifications On/Off</label>
-                <input type = "checkbox" value= {this.state.notifications} onChange = {this.handleSignUpToggle}></input>
-                <br></br>
-                {/* <div className = 'custom-controls custom switch'>
-                    <input
-                    type = "checkbox"
-                    className = "custom-control-input"
-                    id = "customSwitches"
-                    checked = {this.state.notifications}
-                    onChange = {this.handleSignUpToggle(1)}
-                    />
-
-                </div> */}
-
-
-
+                <div className = "ui toggle checkbox">
+                    <input type="checkbox" onClick = {this.handleSignUpToggle}></input>
+                    <label>Turn on SMS Notifications</label>
+                </div>
 
                 <button className="btn btn-primary" type = "Submit">Sign up</button>
-                
-
             </form>
-        )
+            )
+        }
     }
-}
-
+    
 export default SignUp

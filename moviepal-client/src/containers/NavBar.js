@@ -26,7 +26,9 @@ class NavBar extends React.Component {
     render() {
         return (
                 <Navbar bg="light" expand="lg" sticky="top" >
-                    <Navbar.Brand href="/home">MoviePal</Navbar.Brand>
+                    <Navbar.Brand href="/home" >
+                        <font face= "sans-serif" >MoviePal</font>
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="mr-auto">

@@ -12,20 +12,16 @@ class MovieSettings extends Component {
     displayGenres () {
         let user = this.props.user
         return(
-  <Row>{
-        Object.keys(this.props.allGenres).map(genre => {
-            return( 
-                <Col xs="12" sm ="4">   
-            <label id = {genre}>
-            {genre}</label>
-            <input type = "checkbox" name = {genre} onChange = {this.props.onGenreChange}
-             />
-            </Col> 
-            )
-        })
-    }</Row>
-    
- 
+            <Row>{
+                Object.keys(this.props.allGenres).map(genre => {
+                    return( 
+                        <Col xs="12" sm ="4">   
+                            <label id = {genre.id}>{genre}</label>
+                            <input type = "checkbox" name = {genre} onChange = {this.props.onGenreChange}/>
+                        </Col> 
+                    )
+                })
+            }</Row>
         )
     }
 

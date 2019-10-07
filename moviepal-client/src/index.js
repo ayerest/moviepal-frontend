@@ -5,7 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import 'semantic-ui-css/semantic.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as ReactBootstrap from 'react-bootstrap'
+import * as ReactBootstrap from 'react-bootstrap';
+import 'semantic-ui-css/semantic.min.css';
+
 
 
 // document.addEventListener("DOMContentLoaded", scriptSrcGoogleMaps())

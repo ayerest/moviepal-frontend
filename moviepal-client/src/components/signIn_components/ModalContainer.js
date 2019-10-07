@@ -25,7 +25,7 @@ function ModalContainer (props) {
               </Modal.Header>
               <Modal.Body>
 
-              <SignUp />
+                <SignUp onSignUp={ props.onSignIn }/>
               
               </Modal.Body>
               <Modal.Footer>
