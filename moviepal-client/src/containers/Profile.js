@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MapContainer from '../components/profile_components/MapContainer'
+// import MapContainer from '../components/MapContainer'
 import CurrentMoviesContainer from './CurrentMoviesContainer'
 
 
@@ -7,8 +7,9 @@ class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            api: "",
-            center: null
+            center: null,
+            theaters: null, 
+            loaded: false
         }
         // fetch("http://localhost:3000/maps")
         // .then(response => response.json())
@@ -20,31 +21,72 @@ class Profile extends Component {
         //     })
         // })
 
-            let city = this.props.location
-            fetch('http://localhost:3000/maps', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application.json"
-                },
-                body: JSON.stringify({
-                    city: city
-                })
-            }).then(response => response.json())
-                .then(centerPointHash => {
-                    this.setState(prevState => {
-                        return { center: centerPointHash }
-                    }, () => console.log("testing", this.state.center))
-                }).catch(error => {
-                    console.log(error)
-                })
-    }   
-    
+        
+            let city = this.props.user.city
+    //         fetch('http://localhost:3000/maps', {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 "Accept": "application/json",
+    //                 'Authorization': `Bearer ${localStorage.token}`
+
+    //             },
+    //             body: JSON.stringify({
+    //                 city: city
+    //             })
+    //         }).then(response => response.json())
+    //             .then(centerPointHash => {
+    //                 this.setState(prevState => {
+    //                     return { center: centerPointHash }
+    //                 }, () => this.getTheaters(centerPointHash))
+    //             }).catch(error => {
+    //                 console.log("error after generating map based on city", error)
+    //             })
+    //         }
+
+    // newMoviesLoaded = () => {
+    //     // debugger
+    //     this.setState({loaded: true})
+    //     console.log("is loaded", this.state.loaded)
+    // }
+
+    // getTheaters = (centerPointHash) => {
+    //     fetch('http://localhost:3000/markers', {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json",
+    //             'Authorization': `Bearer ${localStorage.token}`
+    //             },
+    //         body: JSON.stringify({
+    //             latLong: centerPointHash
+    //         })
+    //         }).then(response => response.json())
+    //     .then(data => {
+    //         this.setState(prevState => {
+    //             return { theaters: data }
+    //         })
+    //         // () => console.log("after getting theaters", this.state.theaters))})
+        
+    //     // .catch(error => {
+    //     //     console.log("error from theaters", error)})
+        
+    //         })
+    }
+
+
+        
     render() {
         return (
             <div>
-                profile
-                <CurrentMoviesContainer />
-                <MapContainer center={this.state.center}/>
+            <div className="flex">
+                <div className="movies">
+                <CurrentMoviesContainer onLoaded={this.newMoviesLoaded} loaded={this.state.loaded} user={this.props.user}/>
+                </div>
+                <div>
+                {/* <MapContainer user={this.props.user} theaters={this.state.theaters} center={this.state.center}/> */}
+                </div>
+            </div>
             </div>
         )
     }

@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+// import 'semantic-ui-css/semantic.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import * as ReactBootstrap from 'react-bootstrap';
+import 'semantic-ui-css/semantic.min.css';
+
+
 
 // document.addEventListener("DOMContentLoaded", scriptSrcGoogleMaps())
 
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render((
+    <App />), document.getElementById('root')
+);
 
 // (async function getSrc() {
 //     fetch("http://localhost:3000/maps")

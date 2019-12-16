@@ -1,13 +1,11 @@
-import React, {Component} from 'react'
-import ModalContainer from '../../containers/ModalContainer.js'
-import SignUp from './SignUp'
+import React, {Component, Button} from 'react'
+import ModalContainer from './ModalContainer'
+// import Modal from 'react-bootstrap/Modal'
 
 
 class SignIn extends Component {
-
-
-constructor () {
-    super()
+constructor (props) {
+    super(props)
     this.state = {
         fields: {
             username: "",
@@ -17,20 +15,28 @@ constructor () {
                 username: "",
                 password: "",
                 city: ""
-        },
-        showModal: false,
-        error: false
-        
-    }
-    
-}
-this.onSubmit = this.onSubmit.bind(this)
+            }
+          },  
+        // signUpState: false  
+    }  
+    this.handleSubmit = this.handleSubmit.bind(this)
+    // this.toggleShow = this.toggleShow.bind(this)
+    this.handleChange = this.handleChange.bind(this)
 }
 
+// toggleShowModal = (e) => {
+//   // console.log(e.target.)
+//     this.setState(prevState => ({
+//       signUpState: !prevState.signUpState
+//     }))
+//   }
+  
 
 handleChange = (e) => {
-    // console.log(e.target.value)
-    const newInput = { ...this.state.fields, [e.target.name]: e.target.value}
+  // console.log(e.target.value)
+    let newVal = e.target.value
+    let fieldName = e.target.name
+    const newInput = { ...this.state.fields, [fieldName]: newVal}
     this.setState({
         fields: newInput
     })
@@ -38,75 +44,73 @@ handleChange = (e) => {
 
 handleSubmit = (e) => {
     e.preventDefault()
-    applicationCache.auth.login(this.state.fields)
-    .then (response => {
-        if(!response.error) {
-            const updatedState = {
-                ...this.state.auth, user: response};
-                this.props.handleLogin(response);
-                this.props.history.push('/');
-            }
-            else {
-                this.setState({error: true
-                })
-            }
-            }
-    )}
 
-    openModal() {
-        this.setState({
-          showModal: true
-        });
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify({
+        "username": this.state.fields.username,
+        "password": this.state.fields.password 
+      })
+    })
+    .then(response => response.json())
+    .then(json => {
+      //do something to update App state to deal with the logged_in status
+      if (json.jwt) {
+        localStorage.setItem("token", json.jwt)
+        // debugger
+        this.props.onSignIn(json)
       }
-     
-      closeModal() {
-        this.setState({
-          showModal: false,
-        //   error: null
-        });
-      }
+    })
+
+  }
+  
+  
 
     render() {
         const {fields} = this.state;
       return (
           <div>
               {this.state.error ? <h1>Try again...</h1> : null}
-              <div classname= "ui field">
+              <div className= "ui field">
                  <form onSubmit = {this.handleSubmit}>
-                    <div classname = "ui field">
+                    <div className = "ui field">
+                      <br></br>
                         <label>Username</label>
-                <input type="text" required placeholder="Username" value= {fields.username} onChange = {this.handleChange}></input>
-                </div>
-                <div classname = "ui field">
-                <label>Password</label>
-                <input type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
-                </div>
-              <button type = "submit">Sign In</button>
-              {/* <div>
-                  <button onClick = {e => {
-                  this.showModal()}}
-                >New User? Sign Up!
-                  </button>
-                  <SignUp showModal= {this.state.showModal} onClose = {this.showModal} />
-              </div> */}
-              <div>
-              <button onClick={() => this.openModal()}>Open Modal</button>
- 
-                <SignUp
-                visible={this.state.showModal}
-                onCloseModal={this.closeModal.bind(this)}
-                error={this.state.error} />
-            </div>
-
-              
-          </form>
+                      <input name="username" type="text" required placeholder="Username" value= {fields.username} onChange = {this.handleChange}></input>
+                    </div>
+                    <br></br>
+                    <div className = "ui field">
+                      <label>Password</label>
+                      <input name="password" type="password" required placeholder="Password" value= {fields.password} onChange = {this.handleChange}></input>
+                    </div>
+                    <br></br>
+                    <button type = "submit" className="btn btn-primary" >Sign In</button>
+                  </form> 
+                <div>
           
-          </div>
-          </div>
+                {/* {
+                  this.state.signUpState ?
+                  <ModalContainer onSignIn={this.props.onSignIn} /> : null
+                } */}
+                <ModalContainer onSignIn={this.props.onSignIn}/>
+
+                </div>
+                
+                {/* this.state.signUpState = true ? <ModalContainer /> */}
+                  
+ 
+          
+          
+            </div>
+            </div>
       )
   
     }
+  }
 
-}
 
 export default SignIn

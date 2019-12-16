@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -20,3 +22,24 @@
 .App-link {
   color: #09d3ac;
 }
+
+.flex {
+  display: flex;
+  flex-flow: row nowrap;
+  /* justify-content: space-evenly; */
+}
+
+.flex div.movies {
+  /* background-color: thistle; */
+  margin-top: 1rem;
+  width: 40vw;
+  height: 95vw;
+  overflow: scroll;
+}
+
+.ui-card {
+  border: 2px solid black;
+}
+
+
+

@@ -1,48 +1,75 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
-import SearchMoviesContainer from './containers/SearchMoviesContainer'
-// import Profile from './containers/Profile'
-import SignUp from './components/signIn_components/SignUp'
-import Profile from './containers/Profile'
+import AllMyMoviesContainer from './containers/AllMyMoviesContainer'
 import Settings from './containers/Settings'
-// import MovieListsContainer from './containers/MovieListsContainer'
-import SignUpFormContainer from './containers/SignUpFormContainer'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import NavBar from './containers/NavBar.js'
+import Home from './containers/Home'
+import Toggle from 'react-bootstrap-toggle'
+// import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      logged_in: false,
+      user: null
+    }
+  }
 
-function App () {
+  getLoggedIn = (data, wherefrom) => {
+    fetch('http://localhost:3000/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
+    }).then(response => response.json())
+    .then(data => {
+      this.setState(prevState => {
+        return {logged_in: true,
+        user: data.user}
+      })
+    })
+  }
 
-  // function testfunction () {
-  //   fetch("http://localhost3000/genres", {
-  //     method: 'POST',
-  //     headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       name: "test name" 
-  //     })
-  //   })
-  // }
+  getUser = () => {
+    fetch(`http://localhost:3000/users/${this.state.user.id}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState(prevState => {
+        return {
+          logged_in: true,
+          user: data
+        }
+      })
+    })
+  }
 
+  logOut = () => {
+    localStorage.removeItem("token")
+    this.setState(prevState => {
+      return {
+        logged_in: false,
+        user: null
+      }
+    })
+  }
 
-        return (
-    <div className="">
-      <header className="">
-      </header>
-      {/* <SignUp /> */}
-      {/* <Profile /> */}
-      {/* <SignIn /> */}
+    render() {
+      return (
 
-      <SearchMoviesContainer />
-      {/* <button onClick = {testfunction} >add test data </button> */}
-       {/* <Settings /> */}
-
-      {/* <SignUpFormContainer /> */}
-
-      {/* <MovieListsContainer /> */}
-      {/* <button onClick={testfunction}>Test out fetch</button> */}
-    </div>
-    )}
+        <Router>
+          <NavBar user={this.state.user} loggedIn={this.state.logged_in} onLogOut={this.logOut}/>
+          <div>
+            <Route path = '/home' render = { props => <Home {...props} logged_in =   {this.state.logged_in} user = {this.state.user} getLoggedIn= {this.getLoggedIn} /> } />
+            <Route exact path = '/settings' render = { props => <Settings {...props} logged_in =   {this.state.logged_in} user = {this.state.user} onChange={this.getUser}/> } />
+            <Route exact path = '/mymovies' render = { props => <AllMyMoviesContainer {...props} logged_in =   {this.state.logged_in} user = {this.state.user}/> } />
+          </div>
+        </Router>
+      )
+    }
+  }
 
 export default App;
