@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import MapContainer from '../components/MapContainer'
+import MapContainer from '../components/MapContainer'
 import CurrentMoviesContainer from './CurrentMoviesContainer'
 
 
@@ -11,67 +11,67 @@ class Profile extends Component {
             theaters: null, 
             loaded: false
         }
-        // fetch("http://localhost:3000/maps")
-        // .then(response => response.json())
-        // .then(json => {
-        //     // let mapScript = document.getElementById("make-map")
-        //     // mapScript.src = `https://maps.googleapis.com/maps/api/js?key=${json.api_key}`
-        //     this.setState({
-        //         api: json.api_key
-        //     })
-        // })
+        fetch("http://localhost:3000/maps")
+        .then(response => response.json())
+        .then(json => {
+            let mapScript = document.getElementById("make-map")
+            mapScript.src = `https://maps.googleapis.com/maps/api/js?key=${json.api_key}`
+            this.setState({
+                api: json.api_key
+            })
+        })
 
         
             let city = this.props.user.city
-    //         fetch('http://localhost:3000/maps', {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 "Accept": "application/json",
-    //                 'Authorization': `Bearer ${localStorage.token}`
+            fetch('http://localhost:3000/maps', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    'Authorization': `Bearer ${localStorage.token}`
 
-    //             },
-    //             body: JSON.stringify({
-    //                 city: city
-    //             })
-    //         }).then(response => response.json())
-    //             .then(centerPointHash => {
-    //                 this.setState(prevState => {
-    //                     return { center: centerPointHash }
-    //                 }, () => this.getTheaters(centerPointHash))
-    //             }).catch(error => {
-    //                 console.log("error after generating map based on city", error)
-    //             })
-    //         }
+                },
+                body: JSON.stringify({
+                    city: city
+                })
+            }).then(response => response.json())
+                .then(centerPointHash => {
+                    this.setState(prevState => {
+                        return { center: centerPointHash }
+                    }, () => this.getTheaters(centerPointHash))
+                }).catch(error => {
+                    console.log("error after generating map based on city", error)
+                })
+            }
 
-    // newMoviesLoaded = () => {
-    //     // debugger
-    //     this.setState({loaded: true})
-    //     console.log("is loaded", this.state.loaded)
-    // }
+    newMoviesLoaded = () => {
+        // debugger
+        this.setState({loaded: true})
+        console.log("is loaded", this.state.loaded)
+    }
 
-    // getTheaters = (centerPointHash) => {
-    //     fetch('http://localhost:3000/markers', {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json",
-    //             'Authorization': `Bearer ${localStorage.token}`
-    //             },
-    //         body: JSON.stringify({
-    //             latLong: centerPointHash
-    //         })
-    //         }).then(response => response.json())
-    //     .then(data => {
-    //         this.setState(prevState => {
-    //             return { theaters: data }
-    //         })
-    //         // () => console.log("after getting theaters", this.state.theaters))})
+    getTheaters = (centerPointHash) => {
+        fetch('http://localhost:3000/markers', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                'Authorization': `Bearer ${localStorage.token}`
+                },
+            body: JSON.stringify({
+                latLong: centerPointHash
+            })
+            }).then(response => response.json())
+        .then(data => {
+            this.setState(prevState => {
+                return { theaters: data }
+            })
+            // () => console.log("after getting theaters", this.state.theaters))})
         
-    //     // .catch(error => {
-    //     //     console.log("error from theaters", error)})
+        // .catch(error => {
+        //     console.log("error from theaters", error)})
         
-    //         })
+            })
     }
 
 
@@ -84,7 +84,7 @@ class Profile extends Component {
                 <CurrentMoviesContainer onLoaded={this.newMoviesLoaded} loaded={this.state.loaded} user={this.props.user}/>
                 </div>
                 <div>
-                {/* <MapContainer user={this.props.user} theaters={this.state.theaters} center={this.state.center}/> */}
+                <MapContainer user={this.props.user} theaters={this.state.theaters} center={this.state.center}/>
                 </div>
             </div>
             </div>
